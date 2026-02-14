@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /send.php
+Disallow: /admin.php
+
+Sitemap: https://remstrojlogistic.ru/sitemap.xml
+
+Host: remstrojlogistic.ru
