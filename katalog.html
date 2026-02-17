@@ -87,86 +87,40 @@
             <nav class="breadcrumbs"><a href="index.html">Главная</a> → <span>Каталог спецтехники</span></nav>
             <h1 class="section-title">Каталог спецтехники в аренду</h1>
 
-            <div class="catalog-filters">
-                <a href="#excavator" class="filter-btn" onclick="scrollToCategory('excavator')">Экскаваторы (12)</a>
-                <a href="#loader" class="filter-btn" onclick="scrollToCategory('loader')">Погрузчики (12)</a>
-                <a href="#crane" class="filter-btn" onclick="scrollToCategory('crane')">Автокраны (12)</a>
-                <a href="#truck" class="filter-btn" onclick="scrollToCategory('truck')">Самосвалы (12)</a>
-                <a href="#manipulator" class="filter-btn" onclick="scrollToCategory('manipulator')">Манипуляторы
-                    (12)</a>
-                <a href="#road" class="filter-btn" onclick="scrollToCategory('road')">Дорожная (12)</a>
-                <a href="#attachment" class="filter-btn" onclick="scrollToCategory('attachment')">Навесное (12)</a>
-                <a href="#communal" class="filter-btn" onclick="scrollToCategory('communal')">Коммунальная (12)</a>
+
+
+
+
+
+            <div class="catalog-filters" style="flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:30px;">
+                <a href="index.html#catalog?filter=excavator" class="filter-btn"
+                    style="text-decoration:none;">Экскаваторы</a>
+                <a href="index.html#catalog?filter=mini_excavator" class="filter-btn"
+                    style="text-decoration:none;">Мини-экскаваторы</a>
+                <a href="index.html#catalog?filter=loader" class="filter-btn"
+                    style="text-decoration:none;">Погрузчики</a>
+                <a href="index.html#catalog?filter=crane" class="filter-btn" style="text-decoration:none;">Автокраны</a>
+                <a href="index.html#catalog?filter=truck" class="filter-btn" style="text-decoration:none;">Самосвалы</a>
+                <a href="index.html#catalog?filter=manipulator" class="filter-btn"
+                    style="text-decoration:none;">Манипуляторы</a>
+                <a href="index.html#catalog?filter=bulldozer" class="filter-btn"
+                    style="text-decoration:none;">Бульдозеры</a>
+                <a href="index.html#catalog?filter=aerial" class="filter-btn"
+                    style="text-decoration:none;">Автовышки</a>
+                <a href="index.html#catalog?filter=yamobur" class="filter-btn" style="text-decoration:none;">Ямобуры</a>
+                <a href="index.html#catalog?filter=road" class="filter-btn" style="text-decoration:none;">Дорожная</a>
+                <a href="index.html#catalog?filter=attachment" class="filter-btn"
+                    style="text-decoration:none;">Навесное</a>
+                <a href="index.html#catalog?filter=communal" class="filter-btn"
+                    style="text-decoration:none;">Коммунальная</a>
             </div>
-
-            <p style="font-size: 16px; color: #555; margin-bottom: 30px; line-height: 1.7;">В нашем каталоге <strong>96
-                    единиц техники</strong> от ведущих мировых производителей: JCB, Volvo, CAT, Liebherr, Komatsu,
-                КАМАЗ. Вся техника сдаётся в аренду с опытными операторами, заправлена ГСМ. Подача на объект — в течение
-                4 часов. Для подробного просмотра и заказа перейдите в <a href="index.html#catalog"
-                    style="color: var(--primary-color); font-weight: 600;">интерактивный каталог</a>.</p>
-
-            <h2 id="excavator"
-                style="font-size: 22px; margin: 40px 0 15px; border-left: 5px solid var(--primary-color); padding-left: 15px;">
-                Экскаваторы</h2>
-            <p style="color: #666; margin-bottom: 20px;">Гусеничные и колесные экскаваторы, мини-экскаваторы. Масса от
-                1.9 до 33 тонн, глубина копания до 7.4 м. Для котлованов, траншей, погрузки грунта. <a
-                    href="index.html#catalog?filter=excavator" style="color: var(--primary-color);">Смотреть все
-                    экскаваторы →</a></p>
-
-            <h2 id="loader"
-                style="font-size: 22px; margin: 40px 0 15px; border-left: 5px solid var(--primary-color); padding-left: 15px;">
-                Погрузчики</h2>
-            <p style="color: #666; margin-bottom: 20px;">Фронтальные, телескопические, мини-погрузчики и
-                экскаваторы-погрузчики. JCB 3CX/4CX, Bobcat, Manitou, Volvo. <a href="index.html#catalog?filter=loader"
-                    style="color: var(--primary-color);">Смотреть все погрузчики →</a></p>
-
-            <h2 id="crane"
-                style="font-size: 22px; margin: 40px 0 15px; border-left: 5px solid var(--primary-color); padding-left: 15px;">
-                Автокраны</h2>
-            <p style="color: #666; margin-bottom: 20px;">Автокраны 16–100 тонн: Ивановец, Галичанин, Liebherr, XCMG,
-                Tadano, Grove. Стрелы до 52 м. <a href="index.html#catalog?filter=crane"
-                    style="color: var(--primary-color);">Смотреть все автокраны →</a></p>
-
-            <h2 id="truck"
-                style="font-size: 22px; margin: 40px 0 15px; border-left: 5px solid var(--primary-color); padding-left: 15px;">
-                Самосвалы</h2>
-            <p style="color: #666; margin-bottom: 20px;">КАМАЗ, Volvo, MAN, Scania, Shacman. Объём кузова 10–32 м³.
-                Вывоз грунта, снега, доставка сыпучих. <a href="index.html#catalog?filter=truck"
-                    style="color: var(--primary-color);">Смотреть все самосвалы →</a></p>
-
-            <h2 id="manipulator"
-                style="font-size: 22px; margin: 40px 0 15px; border-left: 5px solid var(--primary-color); padding-left: 15px;">
-                Манипуляторы</h2>
-            <p style="color: #666; margin-bottom: 20px;">КМУ от 3 до 12 тонн: Kanglim, Soosan, Palfinger, Fassi, Hiab.
-                Перевозка бытовок, ЖБИ, оборудования. <a href="index.html#catalog?filter=manipulator"
-                    style="color: var(--primary-color);">Смотреть все манипуляторы →</a></p>
-
-            <h2 id="road"
-                style="font-size: 22px; margin: 40px 0 15px; border-left: 5px solid var(--primary-color); padding-left: 15px;">
-                Дорожная техника</h2>
-            <p style="color: #666; margin-bottom: 20px;">Асфальтоукладчики, катки, фрезы, грейдеры, гудронаторы,
-                ресайклеры. Полный цикл дорожных работ. <a href="index.html#catalog?filter=road"
-                    style="color: var(--primary-color);">Смотреть дорожную технику →</a></p>
-
-            <h2 id="attachment"
-                style="font-size: 22px; margin: 40px 0 15px; border-left: 5px solid var(--primary-color); padding-left: 15px;">
-                Навесное оборудование</h2>
-            <p style="color: #666; margin-bottom: 20px;">Гидромолоты, ямобуры, вибропогружатели, крашеры, грейферы,
-                мульчеры, трамбовки, ковши. <a href="index.html#catalog?filter=attachment"
-                    style="color: var(--primary-color);">Смотреть навесное →</a></p>
-
-            <h2 id="communal"
-                style="font-size: 22px; margin: 40px 0 15px; border-left: 5px solid var(--primary-color); padding-left: 15px;">
-                Коммунальная техника</h2>
-            <p style="color: #666; margin-bottom: 20px;">Поливомоечные, подметальные, илососы, мусоровозы,
-                каналопромывочные, ассенизаторы, автовышки. <a href="index.html#catalog?filter=communal"
-                    style="color: var(--primary-color);">Смотреть коммунальную →</a></p>
 
             <div class="seo-section">
                 <h2>Аренда спецтехники в Москве — каталог РЕМСТРОЙЛОГИСТИК</h2>
                 <p>Компания <strong>РЕМСТРОЙЛОГИСТИК</strong> предлагает в аренду более <strong>96 единиц строительной,
                         дорожной и коммунальной техники</strong>. Наш автопарк включает машины от мировых лидеров:
-                    <strong>JCB, Volvo, CAT, Komatsu, Liebherr, Doosan, Hitachi</strong>.</p>
+                    <strong>JCB, Volvo, CAT, Komatsu, Liebherr, Doosan, Hitachi</strong>.
+                </p>
                 <p>Мы работаем с 2019 года и обслуживаем объекты по всей Москве и Московской области. Все машины
                     проходят регулярное ТО, укомплектованы опытными операторами и заправлены ГСМ. Оплата возможна с НДС
                     и без НДС.</p>
