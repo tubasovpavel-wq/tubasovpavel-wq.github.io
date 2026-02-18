@@ -205,8 +205,10 @@
             letter-spacing: 0.5px;
             line-height: 1;
             display: flex;
-            flex-direction: column;
-            /* На маленьких экранах может пригодиться */
+            flex-direction: row;
+            /* Changed from column to row */
+            white-space: nowrap;
+            /* Prevent wrapping */
         }
 
         .logo-text span {
@@ -1910,6 +1912,7 @@
                 <button class="filter-btn" onclick="filterCatalog('excavator', this)">Экскаваторы</button>
                 <button class="filter-btn" onclick="filterCatalog('mini_excavator', this)">Мини-экскаваторы</button>
                 <button class="filter-btn" onclick="filterCatalog('loader', this)">Погрузчики</button>
+                <button class="filter-btn" onclick="filterCatalog('mini_loader', this)">Мини погрузчики</button>
                 <button class="filter-btn" onclick="filterCatalog('crane', this)">Автокраны</button>
                 <button class="filter-btn" onclick="filterCatalog('truck', this)">Самосвалы</button>
                 <button class="filter-btn" onclick="filterCatalog('manipulator', this)">Манипуляторы</button>
@@ -2146,7 +2149,7 @@
                 <div class="map-wrapper">
                     <!-- Ускоренная карта через поисковый запрос (более надежно) -->
                     <iframe
-                        src="https://yandex.ru/map-widget/v1/?ll=37.937744%2C55.794939&z=15&pt=37.937744%2C55.794939%2Cpm2rdm&lang=ru_RU"
+                        src="https://yandex.ru/map-widget/v1/?text=Россия%2C%20Балашиха%2C%20шоссе%20Энтузиастов%2032&z=16"
                         width="100%" height="100%" frameborder="0" allowfullscreen="true" loading="lazy"
                         style="display:block;"></iframe>
                 </div>
@@ -2267,11 +2270,11 @@
             { id: 13, category: 'loader', title: 'JCB 3CX Погрузчик', price: '24 000 ₽', image: 'images/JCB 3cx.webp', gallery: ['images/JCB 3cx.webp', 'images/JCB 3CX Погрузчик с молотом.jpeg', 'images/JCB 3CX Погрузчик с молотом2.jpg'], desc: 'Универсальный экскаватор-погрузчик. Копает, грузит, планирует. Идеален для города. Возможна аренда с гидромолотом.', specs: [{ name: "Тип", value: "Экскаватор-погрузчик" }, { name: "Вес", value: "8 т" }, { name: "Ковш пер.", value: "1.0 м³" }, { name: "Ковш зад.", value: "0.25 м³" }] },
             { id: 14, category: 'loader', title: 'JCB 4CX Равноколесный', price: '28 000 ₽', image: 'images/JCB 4CX.webp', gallery: ['images/JCB 4CX.webp', 'images/JCB 4CX Погрузчик с молотом.jpg', 'images/JCB 4CX Погрузчик c гидромолотом2.jpg'], desc: 'Повышенная проходимость благодаря равновеликим колесам. Режим "крабовый ход". Возможна аренда с гидромолотом.', specs: [{ name: "Колеса", value: "Равновеликие" }, { name: "Вес", value: "8.5 т" }, { name: "Ковш пер.", value: "1.2 м³" }, { name: "Ковш зад.", value: "0.3 м³" }] },
             { id: 15, category: 'loader', title: 'XCMG ZL50G Фронтальный', price: '22 000 ₽', image: 'images/XCMG ZL50G.jpg', desc: 'Мощный фронтальный погрузчик для перемещения сыпучих материалов (песок, щебень).', specs: [{ name: "Г/п", value: "5 т" }, { name: "Ковш", value: "3 м³" }, { name: "Высота", value: "3.1 м" }, { name: "Вес", value: "16 т" }] },
-            { id: 16, category: 'loader', title: 'Bobcat S530 Мини', price: '18 000 ₽', image: 'images/Bobcat S530.webp', desc: 'Компактный бортовой погрузчик. Работает в стесненных условиях, на складах, уборка снега.', specs: [{ name: "Тип", value: "Мини-погрузчик" }, { name: "Г/п", value: "850 кг" }, { name: "Высота", value: "3 м" }, { name: "Вес", value: "2.8 т" }] },
+            { id: 16, category: 'mini_loader', title: 'Bobcat S530 Мини', price: '18 000 ₽', image: 'images/Bobcat S530.webp', desc: 'Компактный бортовой погрузчик. Работает в стесненных условиях, на складах, уборка снега.', specs: [{ name: "Тип", value: "Мини-погрузчик" }, { name: "Г/п", value: "850 кг" }, { name: "Высота", value: "3 м" }, { name: "Вес", value: "2.8 т" }] },
             { id: 17, category: 'loader', title: 'Manitou MT 1840', price: '28 000 ₽', image: 'images/Manitou MT 1840.jpg', desc: 'Телескопический погрузчик. Подача грузов на высоту до 18 метров. Вилы + ковш.', specs: [{ name: "Высота", value: "18 м" }, { name: "Г/п", value: "4 т" }, { name: "Вылет", value: "13 м" }, { name: "Вес", value: "11 т" }] },
             { id: 18, category: 'loader', title: 'Volvo L90H Погрузчик', price: '26 000 ₽', image: 'images/Volvo L90H Погрузчик.webp', desc: 'Премиальный фронтальный погрузчик. Высокая скорость и комфорт.', specs: [{ name: "Г/п", value: "5.5 т" }, { name: "Ковш", value: "2.5 м³" }, { name: "Вес", value: "15 т" }, { name: "Мощность", value: "170 л.с." }] },
             { id: 19, category: 'loader', title: 'Case 580 Super N', price: '24 000 ₽', image: 'images/Case 580 Super N.jpg', desc: 'Американский экскаватор-погрузчик. Мощная гидравлика, телескопическая рукоять.', specs: [{ name: "Вес", value: "8 т" }, { name: "Мощность", value: "97 л.с." }, { name: "Глубина", value: "4.5 м" }, { name: "Ковш", value: "1.0 м³" }] },
-            { id: 20, category: 'loader', title: 'CAT 259D Гусеничный', price: '26 000 ₽', image: 'images/CAT 259D Гусеничный.webp', desc: 'Мини-погрузчик на гусеничном ходу. Отличная проходимость на мягких грунтах.', specs: [{ name: "Тип", value: "Гусеничный" }, { name: "Г/п", value: "1.3 т" }, { name: "Вес", value: "4 т" }, { name: "Ширина", value: "1.7 м" }] },
+            { id: 20, category: 'mini_loader', title: 'CAT 259D Гусеничный', price: '18 000 ₽', image: 'images/CAT 259D Гусеничный.webp', desc: 'Мини-погрузчик на гусеничном ходу. Отличная проходимость на мягких грунтах.', specs: [{ name: "Тип", value: "Гусеничный" }, { name: "Г/п", value: "1.3 т" }, { name: "Вес", value: "4 т" }, { name: "Ширина", value: "1.7 м" }] },
             { id: 21, category: 'loader', title: 'SDLG LG936L', price: '22 000 ₽', image: 'images/SDLG LG936L.webp', desc: 'Надежный китайский погрузчик для коммунальных и строительных работ.', specs: [{ name: "Г/п", value: "3 т" }, { name: "Ковш", value: "1.8 м³" }, { name: "Высота", value: "2.9 м" }, { name: "Вес", value: "10 т" }] },
             { id: 22, category: 'loader', title: 'JCB 540-170 Телескоп', price: '17 000 ₽', image: 'images/JCB 540.webp', desc: 'Длинная стрела для высотных работ. Идеален для малоэтажного строительства.', specs: [{ name: "Вылет", value: "17 м" }, { name: "Г/п", value: "4 т" }, { name: "Вес", value: "12 т" }, { name: "Привод", value: "4x4" }] },
             { id: 23, category: 'loader', title: 'MST M544', price: '24 000 ₽', image: 'images/MST M544.webp', desc: 'Турецкий экскаватор-погрузчик. Аналог JCB 4CX с равновеликими колесами.', specs: [{ name: "Колеса", value: "Равновеликие" }, { name: "Вес", value: "8.7 т" }, { name: "Ковш пер.", value: "1.2 м³" }, { name: "Глубина", value: "5.4 м" }] },
@@ -2366,6 +2369,8 @@
             // 9. ЯМОБУРЫ (2)
             { id: 97, category: 'yamobur', title: 'Ямобур Isuzu (Колесный)', price: '36 000 ₽', image: 'images/Ямобур колесный.webp', desc: 'Компактный и маневренный ямобур на базе Isuzu. Идеален для работы в городских условиях и на дачных участках.', specs: [{ name: "Глубина бурения", value: "до 3 м" }, { name: "Диаметр", value: "до 500 мм" }, { name: "Шасси", value: "Isuzu Elf" }, { name: "Крюк", value: "3 т" }] },
             { id: 98, category: 'yamobur', title: 'Ямобур КАМАЗ (Вездеход)', price: '60 000 ₽', image: 'images/Ямобур вездеход.jpg', desc: 'Мощная буровая установка на базе вездехода КАМАЗ. Бурение свай для фундаментов и установки опор ЛЭП в сложных грунтах.', specs: [{ name: "Глубина бурения", value: "до 10 м" }, { name: "Диаметр", value: "до 800 мм" }, { name: "Шасси", value: "КАМАЗ 43118" }, { name: "Привод", value: "6x6" }] },
+            { id: 114, category: 'yamobur', title: 'Ямобур Kubota (Мини)', price: '18 000 ₽', image: 'images/kubota.jpg', desc: 'Компактный мини-ямобур на базе Kubota. Высокая проходимость и маневренность.', specs: [{ name: "Глубина бурения", value: "до 2.5 м" }, { name: "Диаметр", value: "до 300 мм" }, { name: "Вес", value: "3 т" }, { name: "База", value: "Гусеничная" }] },
+            { id: 115, category: 'yamobur', title: 'Ямобур CAT (20т)', price: '32 000 ₽', image: 'images/cat20.jpg', desc: 'Мощный ямобур на базе экскаватора CAT. Для глубокого бурения и установки свай.', specs: [{ name: "Глубина бурения", value: "до 10 м" }, { name: "Диаметр", value: "до 600 мм" }, { name: "Вес", value: "20 т" }, { name: "База", value: "CAT 320" }] },
 
             // 10. МИНИ-ЭКСКАВАТОРЫ (Новые фото)
             { id: 9, category: 'mini_excavator', title: 'Kubota KX019-4', price: '18 000 ₽', image: 'images/kubota_019.jpg', desc: 'Сверхкомпактный мини-экскаватор. Проходит в дверные проемы, идеален для помещений.', specs: [{ name: "Масса", value: "1.9 т" }, { name: "Ковш", value: "0.06 м³" }, { name: "Глубина", value: "2.5 м" }, { name: "Ширина", value: "1.0 м" }] },
