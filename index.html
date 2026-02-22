@@ -1083,6 +1083,32 @@
             text-align: center;
         }
 
+        .partner-equip-link {
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .partner-equip-link:hover {
+            border-color: var(--primary-color);
+            background: #fff8e1;
+            color: #222;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(247, 181, 0, 0.2);
+        }
+
+        .partner-work-link {
+            color: #444;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .partner-work-link:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
         @media (max-width: 768px) {
             .partner-detail {
                 grid-template-columns: 1fr;
@@ -1679,6 +1705,199 @@
                 padding: 20px;
             }
         }
+
+        /* === SUCCESS MODAL === */
+        .success-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .success-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .success-modal {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px 36px 32px;
+            max-width: 440px;
+            width: 90%;
+            text-align: center;
+            transform: scale(0.8) translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .success-overlay.open .success-modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .success-checkmark {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #F7B500, #D99F00);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: successPulse 0.6s ease;
+        }
+
+        @keyframes successPulse {
+            0% {
+                transform: scale(0);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .success-checkmark svg {
+            width: 40px;
+            height: 40px;
+            fill: none;
+            stroke: #fff;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 40;
+            stroke-dashoffset: 40;
+            animation: checkDraw 0.5s ease 0.3s forwards;
+        }
+
+        @keyframes checkDraw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .success-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1A1A1A;
+            margin-bottom: 10px;
+        }
+
+        .success-message {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .success-message strong {
+            color: #333;
+        }
+
+        .success-divider {
+            height: 1px;
+            background: #eee;
+            margin: 0 -10px 20px;
+        }
+
+        .success-rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: #f9f9f9;
+            border-radius: 12px;
+        }
+
+        .success-rating-source {
+            font-size: 20px;
+            font-weight: 700;
+            color: #FC3F1D;
+            line-height: 1;
+        }
+
+        .success-rating-source span {
+            display: block;
+            font-size: 12px;
+            color: #999;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .success-rating-info {
+            text-align: left;
+        }
+
+        .success-rating-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .success-rating-stars {
+            color: #F7B500;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        .success-close-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #F7B500 0%, #D99F00 100%);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .success-close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(247, 181, 0, 0.4);
+        }
+
+        .success-modal-x {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: #f0f0f0;
+            border-radius: 50%;
+            font-size: 18px;
+            color: #666;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .success-modal-x:hover {
+            background: #e0e0e0;
+            color: #333;
+        }
     </style>
 </head>
 
@@ -1886,6 +2105,32 @@
                 <div class="form-group"><label>Комментарий</label><textarea name="message" rows="3"></textarea></div>
                 <button type="submit" class="btn" style="width: 100%;">Отправить</button>
             </form>
+        </div>
+    </div>
+
+    <!-- === SUCCESS MODAL === -->
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-modal">
+            <button class="success-modal-x" onclick="closeSuccessModal()">&times;</button>
+            <div class="success-checkmark">
+                <svg viewBox="0 0 24 24">
+                    <polyline points="6 12 10 16 18 8" />
+                </svg>
+            </div>
+            <div class="success-title">Заявка отправлена!</div>
+            <div class="success-message" id="successMessage"></div>
+            <div class="success-divider"></div>
+            <div class="success-rating">
+                <div class="success-rating-source">
+                    Я<span style="display:inline;font-size:inherit;color:inherit;font-weight:inherit;">ндекс</span>
+                    <span>Карты</span>
+                </div>
+                <div class="success-rating-info">
+                    <div class="success-rating-value">Рейтинг: 4.9</div>
+                    <div class="success-rating-stars">★★★★★</div>
+                </div>
+            </div>
+            <button class="success-close-btn" onclick="closeSuccessModal()">Отлично!</button>
         </div>
     </div>
 
@@ -2264,21 +2509,31 @@
             { id: 1, category: 'excavator', title: 'JCB JS220 Гусеничный', price: '28 000 ₽', image: 'images/jcb_220.webp', desc: 'Предназначен для разработки котлованов, траншей, погрузки грунта. Высокая проходимость на сложных грунтах.', specs: [{ name: "Масса", value: "22 т" }, { name: "Ковш", value: "1.2 м³" }, { name: "Глубина", value: "6.5 м" }, { name: "Габариты", value: "9.5x2.9x3.0 м" }] },
             { id: 6, category: 'excavator', title: 'Volvo EC220DL', price: '28 000 ₽', image: 'images/volvo_220.jpg', desc: 'Шведская надежность. Высокая точность управления, идеален для планировочных работ.', specs: [{ name: "Масса", value: "23 т" }, { name: "Ковш", value: "1.3 м³" }, { name: "Глубина", value: "6.7 м" }, { name: "Габариты", value: "9.7x2.9x2.9 м" }] },
             { id: 10, category: 'excavator', title: 'Liebherr R 924', price: '28 000 ₽', image: 'images/liebherr_924.jpg', desc: 'Немецкое качество Liebherr. Высокая мощность гидравлики для демонтажных работ.', specs: [{ name: "Масса", value: "24 т" }, { name: "Ковш", value: "1.4 м³" }, { name: "Глубина", value: "6.8 м" }, { name: "Габариты", value: "10.0x3.0x3.1 м" }] },
+            { id: 116, category: 'excavator', title: 'Lonking CDM6225H', price: '28 000 ₽', image: 'images/Lonking excavator.jpg', desc: 'Надёжный гусеничный экскаватор Lonking. Экономичный двигатель, высокая производительность на земляных работах.', specs: [{ name: "Масса", value: "22 т" }, { name: "Ковш", value: "1.1 м³" }, { name: "Глубина", value: "6.5 м" }, { name: "Габариты", value: "9.6x2.9x3.0 м" }] },
+            { id: 117, category: 'excavator', title: 'XCMG XE225DN', price: '28 000 ₽', image: 'images/XCMG excavator.jpg', desc: 'Современный гусеничный экскаватор XCMG. Мощная гидравлика, надёжная конструкция для строительных площадок.', specs: [{ name: "Масса", value: "22 т" }, { name: "Ковш", value: "1.0 м³" }, { name: "Глубина", value: "6.6 м" }, { name: "Габариты", value: "9.6x2.9x3.0 м" }] },
+            { id: 118, category: 'excavator', title: 'Lovol FR225E', price: '28 000 ₽', image: 'images/lovol.jpg', desc: 'Гусеничный экскаватор Lovol (Weichai). Отличное соотношение цены и производительности.', specs: [{ name: "Масса", value: "22 т" }, { name: "Ковш", value: "1.0 м³" }, { name: "Глубина", value: "6.5 м" }, { name: "Габариты", value: "9.5x2.9x3.0 м" }] },
             { id: 2, category: 'excavator', title: 'Hitachi ZX 330-5G', price: '32 000 ₽', image: 'images/hitachi_330.webp', desc: 'Мощный экскаватор для карьерных работ и крупных строительных объектов. Высокая производительность.', specs: [{ name: "Масса", value: "33 т" }, { name: "Ковш", value: "1.6 м³" }, { name: "Глубина", value: "7.4 м" }, { name: "Габариты", value: "11.0x3.2x3.2 м" }] },
 
-            // 2. ПОГРУЗЧИКИ (12)
-            { id: 13, category: 'loader', title: 'JCB 3CX Погрузчик', price: '24 000 ₽', image: 'images/JCB 3cx.webp', gallery: ['images/JCB 3cx.webp', 'images/JCB 3CX Погрузчик с молотом.jpeg', 'images/JCB 3CX Погрузчик с молотом2.jpg'], desc: 'Универсальный экскаватор-погрузчик. Копает, грузит, планирует. Идеален для города. Возможна аренда с гидромолотом.', specs: [{ name: "Тип", value: "Экскаватор-погрузчик" }, { name: "Вес", value: "8 т" }, { name: "Ковш пер.", value: "1.0 м³" }, { name: "Ковш зад.", value: "0.25 м³" }] },
-            { id: 14, category: 'loader', title: 'JCB 4CX Равноколесный', price: '28 000 ₽', image: 'images/JCB 4CX.webp', gallery: ['images/JCB 4CX.webp', 'images/JCB 4CX Погрузчик с молотом.jpg', 'images/JCB 4CX Погрузчик c гидромолотом2.jpg'], desc: 'Повышенная проходимость благодаря равновеликим колесам. Режим "крабовый ход". Возможна аренда с гидромолотом.', specs: [{ name: "Колеса", value: "Равновеликие" }, { name: "Вес", value: "8.5 т" }, { name: "Ковш пер.", value: "1.2 м³" }, { name: "Ковш зад.", value: "0.3 м³" }] },
-            { id: 15, category: 'loader', title: 'XCMG ZL50G Фронтальный', price: '22 000 ₽', image: 'images/XCMG ZL50G.jpg', desc: 'Мощный фронтальный погрузчик для перемещения сыпучих материалов (песок, щебень).', specs: [{ name: "Г/п", value: "5 т" }, { name: "Ковш", value: "3 м³" }, { name: "Высота", value: "3.1 м" }, { name: "Вес", value: "16 т" }] },
+            // 2. МИНИ-ПОГРУЗЧИКИ
             { id: 16, category: 'mini_loader', title: 'Bobcat S530 Мини', price: '18 000 ₽', image: 'images/Bobcat S530.webp', desc: 'Компактный бортовой погрузчик. Работает в стесненных условиях, на складах, уборка снега.', specs: [{ name: "Тип", value: "Мини-погрузчик" }, { name: "Г/п", value: "850 кг" }, { name: "Высота", value: "3 м" }, { name: "Вес", value: "2.8 т" }] },
-            { id: 17, category: 'loader', title: 'Manitou MT 1840', price: '28 000 ₽', image: 'images/Manitou MT 1840.jpg', desc: 'Телескопический погрузчик. Подача грузов на высоту до 18 метров. Вилы + ковш.', specs: [{ name: "Высота", value: "18 м" }, { name: "Г/п", value: "4 т" }, { name: "Вылет", value: "13 м" }, { name: "Вес", value: "11 т" }] },
-            { id: 18, category: 'loader', title: 'Volvo L90H Погрузчик', price: '26 000 ₽', image: 'images/Volvo L90H Погрузчик.webp', desc: 'Премиальный фронтальный погрузчик. Высокая скорость и комфорт.', specs: [{ name: "Г/п", value: "5.5 т" }, { name: "Ковш", value: "2.5 м³" }, { name: "Вес", value: "15 т" }, { name: "Мощность", value: "170 л.с." }] },
-            { id: 19, category: 'loader', title: 'Case 580 Super N', price: '24 000 ₽', image: 'images/Case 580 Super N.jpg', desc: 'Американский экскаватор-погрузчик. Мощная гидравлика, телескопическая рукоять.', specs: [{ name: "Вес", value: "8 т" }, { name: "Мощность", value: "97 л.с." }, { name: "Глубина", value: "4.5 м" }, { name: "Ковш", value: "1.0 м³" }] },
             { id: 20, category: 'mini_loader', title: 'CAT 259D Гусеничный', price: '18 000 ₽', image: 'images/CAT 259D Гусеничный.webp', desc: 'Мини-погрузчик на гусеничном ходу. Отличная проходимость на мягких грунтах.', specs: [{ name: "Тип", value: "Гусеничный" }, { name: "Г/п", value: "1.3 т" }, { name: "Вес", value: "4 т" }, { name: "Ширина", value: "1.7 м" }] },
-            { id: 21, category: 'loader', title: 'SDLG LG936L', price: '22 000 ₽', image: 'images/SDLG LG936L.webp', desc: 'Надежный китайский погрузчик для коммунальных и строительных работ.', specs: [{ name: "Г/п", value: "3 т" }, { name: "Ковш", value: "1.8 м³" }, { name: "Высота", value: "2.9 м" }, { name: "Вес", value: "10 т" }] },
+            { id: 119, category: 'mini_loader', title: 'CASE TR270 Гусеничный', price: '18 000 ₽', image: 'images/CASE TR270 мини погрузчик.jpg', desc: 'Мощный гусеничный мини-погрузчик CASE. Высокая грузоподъёмность и отличная проходимость на сложных грунтах.', specs: [{ name: "Тип", value: "Гусеничный" }, { name: "Г/п", value: "1.2 т" }, { name: "Вес", value: "4.2 т" }, { name: "Мощность", value: "74 л.с." }] },
+            { id: 120, category: 'mini_loader', title: 'XCMG Мини Гусеничный', price: '18 000 ₽', image: 'images/XCMG мини погрузчик.jpg', desc: 'Компактный гусеничный мини-погрузчик XCMG. Надёжная конструкция, универсальное навесное оборудование.', specs: [{ name: "Тип", value: "Гусеничный" }, { name: "Г/п", value: "1.0 т" }, { name: "Вес", value: "3.5 т" }, { name: "Ширина", value: "1.7 м" }] },
+            { id: 121, category: 'mini_loader', title: 'SUNWARD SWTL4528', price: '18 000 ₽', image: 'images/SUNWARD мини погрузчик.jpg', desc: 'Гусеничный мини-погрузчик SUNWARD. Высокая мощность, отличная устойчивость на неровной поверхности.', specs: [{ name: "Тип", value: "Гусеничный" }, { name: "Г/п", value: "1.0 т" }, { name: "Вес", value: "4 т" }, { name: "Мощность", value: "65 л.с." }] },
+            { id: 122, category: 'mini_loader', title: 'SUNWARD SWL4028 Колёсный', price: '18 000 ₽', image: 'images/SUNWARD мини погрузчик на колесах.jpg', desc: 'Колёсный мини-погрузчик SUNWARD. Маневренный, быстро перемещается между объектами, не портит покрытие.', specs: [{ name: "Тип", value: "Колёсный" }, { name: "Г/п", value: "0.9 т" }, { name: "Вес", value: "3 т" }, { name: "Скорость", value: "12 км/ч" }] },
+
+            // ПОГРУЗЧИКИ
             { id: 22, category: 'loader', title: 'JCB 540-170 Телескоп', price: '17 000 ₽', image: 'images/JCB 540.webp', desc: 'Длинная стрела для высотных работ. Идеален для малоэтажного строительства.', specs: [{ name: "Вылет", value: "17 м" }, { name: "Г/п", value: "4 т" }, { name: "Вес", value: "12 т" }, { name: "Привод", value: "4x4" }] },
+            { id: 15, category: 'loader', title: 'XCMG ZL50G Фронтальный', price: '22 000 ₽', image: 'images/XCMG ZL50G.jpg', desc: 'Мощный фронтальный погрузчик для перемещения сыпучих материалов (песок, щебень).', specs: [{ name: "Г/п", value: "5 т" }, { name: "Ковш", value: "3 м³" }, { name: "Высота", value: "3.1 м" }, { name: "Вес", value: "16 т" }] },
+            { id: 21, category: 'loader', title: 'SDLG LG936L', price: '22 000 ₽', image: 'images/SDLG LG936L.webp', desc: 'Надежный китайский погрузчик для коммунальных и строительных работ.', specs: [{ name: "Г/п", value: "3 т" }, { name: "Ковш", value: "1.8 м³" }, { name: "Высота", value: "2.9 м" }, { name: "Вес", value: "10 т" }] },
+            { id: 13, category: 'loader', title: 'JCB 3CX Погрузчик', price: '24 000 ₽', image: 'images/JCB 3cx.webp', gallery: ['images/JCB 3cx.webp', 'images/JCB 3CX Погрузчик с молотом.jpeg', 'images/JCB 3CX Погрузчик с молотом2.jpg'], desc: 'Универсальный экскаватор-погрузчик. Копает, грузит, планирует. Идеален для города. Возможна аренда с гидромолотом.', specs: [{ name: "Тип", value: "Экскаватор-погрузчик" }, { name: "Вес", value: "8 т" }, { name: "Ковш пер.", value: "1.0 м³" }, { name: "Ковш зад.", value: "0.25 м³" }] },
+            { id: 19, category: 'loader', title: 'Case 580 Super N', price: '24 000 ₽', image: 'images/Case 580 Super N.jpg', desc: 'Американский экскаватор-погрузчик. Мощная гидравлика, телескопическая рукоять.', specs: [{ name: "Вес", value: "8 т" }, { name: "Мощность", value: "97 л.с." }, { name: "Глубина", value: "4.5 м" }, { name: "Ковш", value: "1.0 м³" }] },
             { id: 23, category: 'loader', title: 'MST M544', price: '24 000 ₽', image: 'images/MST M544.webp', desc: 'Турецкий экскаватор-погрузчик. Аналог JCB 4CX с равновеликими колесами.', specs: [{ name: "Колеса", value: "Равновеликие" }, { name: "Вес", value: "8.7 т" }, { name: "Ковш пер.", value: "1.2 м³" }, { name: "Глубина", value: "5.4 м" }] },
             { id: 24, category: 'loader', title: 'Terex TLB 825', price: '24 000 ₽', image: 'images/Terex TLB 825.webp', desc: 'Рабочая лошадка для стройплощадки. Простая и надежная конструкция.', specs: [{ name: "Вес", value: "7.8 т" }, { name: "Ковш", value: "1 м³" }, { name: "Глубина", value: "4.7 м" }, { name: "Мощность", value: "94 л.с." }] },
+            { id: 123, category: 'loader', title: 'CASE 580ST Экскаватор-погрузчик', price: '24 000 ₽', image: 'images/CASE погрузчик.jpg', desc: 'Американский экскаватор-погрузчик CASE с обратной лопатой. Универсален для рытья траншей и погрузки.', specs: [{ name: "Вес", value: "8.5 т" }, { name: "Мощность", value: "97 л.с." }, { name: "Глубина", value: "4.3 м" }, { name: "Ковш", value: "1.0 м³" }] },
+            { id: 18, category: 'loader', title: 'Volvo L90H Погрузчик', price: '26 000 ₽', image: 'images/Volvo L90H Погрузчик.webp', desc: 'Премиальный фронтальный погрузчик. Высокая скорость и комфорт.', specs: [{ name: "Г/п", value: "5.5 т" }, { name: "Ковш", value: "2.5 м³" }, { name: "Вес", value: "15 т" }, { name: "Мощность", value: "170 л.с." }] },
+            { id: 14, category: 'loader', title: 'JCB 4CX Равноколесный', price: '28 000 ₽', image: 'images/JCB 4CX.webp', gallery: ['images/JCB 4CX.webp', 'images/JCB 4CX Погрузчик с молотом.jpg', 'images/JCB 4CX Погрузчик c гидромолотом2.jpg'], desc: 'Повышенная проходимость благодаря равновеликим колесам. Режим "крабовый ход". Возможна аренда с гидромолотом.', specs: [{ name: "Колеса", value: "Равновеликие" }, { name: "Вес", value: "8.5 т" }, { name: "Ковш пер.", value: "1.2 м³" }, { name: "Ковш зад.", value: "0.3 м³" }] },
+            { id: 17, category: 'loader', title: 'Manitou MT 1840', price: '28 000 ₽', image: 'images/Manitou MT 1840.jpg', desc: 'Телескопический погрузчик. Подача грузов на высоту до 18 метров. Вилы + ковш.', specs: [{ name: "Высота", value: "18 м" }, { name: "Г/п", value: "4 т" }, { name: "Вылет", value: "13 м" }, { name: "Вес", value: "11 т" }] },
 
             // ДОП. ОБОРУДОВАНИЕ В ПОГРУЗЧИКИ
             { id: 'att_ld_1', category: 'loader', title: 'Вилы паллетные', price: '1 000 ₽', image: 'images/Вилы погрузочные.jpg', desc: 'Для погрузки и разгрузки паллет, ящиков и стройматериалов.', specs: [{ name: "Г/п", value: "3 т" }, { name: "Длина", value: "1.2 м" }] },
@@ -2286,91 +2541,93 @@
             { id: 'att_ld_3', category: 'loader', title: 'Щетка дорожная', price: '8 000 ₽', image: 'images/Трактор МТЗ с щеткой.jpg', desc: 'Для подметания территорий и дорог.', specs: [{ name: "Тип", value: "Навесная" }] },
 
 
-            // 3. КРАНЫ (12)
-            { id: 25, category: 'crane', title: 'Ивановец 25т (КАМАЗ)', price: '25 000 ₽', image: 'images/Ивановец 25т (КАМАЗ).jpg', desc: 'Классический автокран на шасси КАМАЗ. Подходит для большинства монтажных работ.', specs: [{ name: "Г/п", value: "25 т" }, { name: "Стрела", value: "21 м" }, { name: "Шасси", value: "КАМАЗ 6х4" }, { name: "Габариты", value: "11x2.5x3.6 м" }] },
-            { id: 26, category: 'crane', title: 'Галичанин 32т', price: '28 000 ₽', image: 'images/Галичанин 32т.jpg', desc: 'Усиленная стрела овоидного сечения. Повышенные грузовысотные характеристики.', specs: [{ name: "Г/п", value: "32 т" }, { name: "Стрела", value: "30.2 м" }, { name: "Гусек", value: "9 м" }, { name: "Шасси", value: "КАМАЗ 6540" }] },
-            { id: 27, category: 'crane', title: 'Liebherr LTM 1050', price: '50 000 ₽', image: 'images/Liebherr LTM 1050.png', desc: 'Немецкий вездеходный кран. Компактный, маневренный, высокая точность.', specs: [{ name: "Г/п", value: "50 т" }, { name: "Стрела", value: "38 м" }, { name: "Оси", value: "3" }, { name: "Привод", value: "6x6x6" }] },
-            { id: 28, category: 'crane', title: 'XCMG QY25K5 (25т)', price: '25 000 ₽', image: 'images/XCMG QY25K5.webp', desc: 'Китайский автокран с самой длинной стрелой в классе.', specs: [{ name: "Г/п", value: "25 т" }, { name: "Стрела", value: "39 м" }, { name: "Гусек", value: "8 м" }, { name: "Габариты", value: "12x2.5x3.3 м" }] },
-            { id: 29, category: 'crane', title: 'Клинцы 25т Вездеход', price: '30 000 ₽', image: 'images/Клинцы 25т Вездеход.jpg', desc: 'Кран на базе УРАЛ. Для работы в условиях бездорожья и распутицы.', specs: [{ name: "Г/п", value: "25 т" }, { name: "Шасси", value: "Урал 6х6" }, { name: "Стрела", value: "28 м" }, { name: "Проходимость", value: "Высокая" }] },
-            { id: 30, category: 'crane', title: 'Liebherr LTM 1100', price: '70 000 ₽', image: 'images/Liebherr LTM 1100.jpg', desc: 'Тяжелый 100-тонный кран для монтажа башенных кранов и крупного оборудования.', specs: [{ name: "Г/п", value: "100 т" }, { name: "Стрела", value: "52 м" }, { name: "Гусек", value: "19 м" }, { name: "Оси", value: "4" }] },
-            { id: 31, category: 'crane', title: 'Zoomlion ZTC300', price: '28 000 ₽', image: 'images/Zoomlion ZTC300.webp', desc: 'Современный кран 30т. Джойстиковое управление, плавная работа.', specs: [{ name: "Г/п", value: "30 т" }, { name: "Стрела", value: "42 м" }, { name: "Гусек", value: "8 м" }, { name: "Шасси", value: "Спецшасси" }] },
+            // 3. КРАНЫ
             { id: 32, category: 'crane', title: 'Ивановец 16т', price: '22 000 ₽', image: 'images/Ивановец 16т.webp', desc: 'Малый автокран для тесных дворов и небольших грузов.', specs: [{ name: "Г/п", value: "16 т" }, { name: "Стрела", value: "18 м" }, { name: "Шасси", value: "МАЗ" }, { name: "Габариты", value: "Компакт" }] },
+            { id: 25, category: 'crane', title: 'Ивановец 25т (КАМАЗ)', price: '25 000 ₽', image: 'images/Ивановец 25т (КАМАЗ).jpg', desc: 'Классический автокран на шасси КАМАЗ. Подходит для большинства монтажных работ.', specs: [{ name: "Г/п", value: "25 т" }, { name: "Стрела", value: "21 м" }, { name: "Шасси", value: "КАМАЗ 6х4" }, { name: "Габариты", value: "11x2.5x3.6 м" }] },
+            { id: 28, category: 'crane', title: 'XCMG QY25K5 (25т)', price: '25 000 ₽', image: 'images/XCMG QY25K5.webp', desc: 'Китайский автокран с самой длинной стрелой в классе.', specs: [{ name: "Г/п", value: "25 т" }, { name: "Стрела", value: "39 м" }, { name: "Гусек", value: "8 м" }, { name: "Габариты", value: "12x2.5x3.3 м" }] },
+            { id: 26, category: 'crane', title: 'Галичанин 32т', price: '28 000 ₽', image: 'images/Галичанин 32т.jpg', desc: 'Усиленная стрела овоидного сечения. Повышенные грузовысотные характеристики.', specs: [{ name: "Г/п", value: "32 т" }, { name: "Стрела", value: "30.2 м" }, { name: "Гусек", value: "9 м" }, { name: "Шасси", value: "КАМАЗ 6540" }] },
+            { id: 31, category: 'crane', title: 'Zoomlion ZTC300', price: '28 000 ₽', image: 'images/Zoomlion ZTC300.webp', desc: 'Современный кран 30т. Джойстиковое управление, плавная работа.', specs: [{ name: "Г/п", value: "30 т" }, { name: "Стрела", value: "42 м" }, { name: "Гусек", value: "8 м" }, { name: "Шасси", value: "Спецшасси" }] },
+            { id: 29, category: 'crane', title: 'Клинцы 25т Вездеход', price: '30 000 ₽', image: 'images/Клинцы 25т Вездеход.jpg', desc: 'Кран на базе УРАЛ. Для работы в условиях бездорожья и распутицы.', specs: [{ name: "Г/п", value: "25 т" }, { name: "Шасси", value: "Урал 6х6" }, { name: "Стрела", value: "28 м" }, { name: "Проходимость", value: "Высокая" }] },
+            { id: 27, category: 'crane', title: 'Liebherr LTM 1050', price: '50 000 ₽', image: 'images/Liebherr LTM 1050.png', desc: 'Немецкий вездеходный кран. Компактный, маневренный, высокая точность.', specs: [{ name: "Г/п", value: "50 т" }, { name: "Стрела", value: "38 м" }, { name: "Оси", value: "3" }, { name: "Привод", value: "6x6x6" }] },
             { id: 33, category: 'crane', title: 'Tadano Faun 50т', price: '50 000 ₽', image: 'images/Tadano Faun 50т.jpg', desc: 'Японское качество. Надежный вездеходный кран.', specs: [{ name: "Г/п", value: "50 т" }, { name: "Стрела", value: "40 м" }, { name: "Гусек", value: "16 м" }, { name: "Привод", value: "4x4x4" }] },
+            { id: 30, category: 'crane', title: 'Liebherr LTM 1100', price: '70 000 ₽', image: 'images/Liebherr LTM 1100.jpg', desc: 'Тяжелый 100-тонный кран для монтажа башенных кранов и крупного оборудования.', specs: [{ name: "Г/п", value: "100 т" }, { name: "Стрела", value: "52 м" }, { name: "Гусек", value: "19 м" }, { name: "Оси", value: "4" }] },
 
 
-            // 4. САМОСВАЛЫ (12)
+            // 4. САМОСВАЛЫ
             { id: 37, category: 'truck', title: 'КАМАЗ 65115 (15т)', price: '10 000 ₽', image: 'images/КАМАЗ 65115.webp', desc: 'Оранжевый самосвал. Идеален для вывоза мусора и доставки песка.', specs: [{ name: "Г/п", value: "15 т" }, { name: "Объем", value: "10 м³" }, { name: "Колеса", value: "6x4" }, { name: "Разгрузка", value: "Задняя" }] },
+            { id: 41, category: 'truck', title: 'КАМАЗ 6520 (20т)', price: '12 000 ₽', image: 'images/КАМАЗ 6520.webp', desc: 'Тяжелый самосвал ("Мамонт"). Для строительных грузов.', specs: [{ name: "Г/п", value: "20 т" }, { name: "Объем", value: "20 м³" }, { name: "Колеса", value: "6x4" }, { name: "Двигатель", value: "Камаз 740" }] },
+            { id: 44, category: 'truck', title: 'FAW J6 (30т)', price: '13 500 ₽', image: 'images/FAW J6 (30т).webp', desc: 'Китайский самосвал. Хорошее соотношение цены и объема.', specs: [{ name: "Г/п", value: "30 т" }, { name: "Объем", value: "22 м³" }, { name: "Колеса", value: "8x4" }, { name: "Двигатель", value: "CA6DM2" }] },
+            { id: 47, category: 'truck', title: 'Howo A7', price: '14 000 ₽', image: 'images/Howo A7.jpg', desc: 'Популярный китаец. Комфортная кабина и мощный мотор.', specs: [{ name: "Г/п", value: "30 т" }, { name: "Объем", value: "23 м³" }, { name: "Колеса", value: "8x4" }, { name: "Двигатель", value: "380 л.с." }] },
             { id: 38, category: 'truck', title: 'Shacman 8x4 (35т)', price: '15 000 ₽', image: 'images/Shacman 8x4.jpg', desc: 'Большой объем кузова. Для масштабных перевозок грунта.', specs: [{ name: "Г/п", value: "35 т" }, { name: "Объем", value: "25 м³" }, { name: "Колеса", value: "8x4" }, { name: "Кабина", value: "Спальник" }] },
+            { id: 42, category: 'truck', title: 'MAN TGS 8x4', price: '15 500 ₽', image: 'images/MAN TGS 8x4.webp', desc: 'Немецкая надежность. Подходит для длинных плеч перевозки.', specs: [{ name: "Г/п", value: "32 т" }, { name: "Объем", value: "20 м³" }, { name: "Колеса", value: "8x4" }, { name: "Кабина", value: "M" }] },
             { id: 39, category: 'truck', title: 'Volvo FMX (30т)', price: '16 000 ₽', image: 'images/Volvo FMX.webp', desc: 'Карьерный грузовик. Повышенная надежность и проходимость.', specs: [{ name: "Г/п", value: "30 т" }, { name: "Объем", value: "20 м³" }, { name: "Мощность", value: "420 л.с." }, { name: "Колеса", value: "6x4" }] },
             { id: 40, category: 'truck', title: 'Scania P400', price: '16 500 ₽', image: 'images/Scania P400.webp', desc: 'Экономичный тягач. Комфорт водителя и надежность.', specs: [{ name: "Г/п", value: "32 т" }, { name: "Объем", value: "20 м³" }, { name: "Колеса", value: "8x4" }, { name: "КПП", value: "Автомат" }] },
-            { id: 41, category: 'truck', title: 'КАМАЗ 6520 (20т)', price: '12 000 ₽', image: 'images/КАМАЗ 6520.webp', desc: 'Тяжелый самосвал ("Мамонт"). Для строительных грузов.', specs: [{ name: "Г/п", value: "20 т" }, { name: "Объем", value: "20 м³" }, { name: "Колеса", value: "6x4" }, { name: "Двигатель", value: "Камаз 740" }] },
-            { id: 42, category: 'truck', title: 'MAN TGS 8x4', price: '15 500 ₽', image: 'images/MAN TGS 8x4.webp', desc: 'Немецкая надежность. Подходит для длинных плеч перевозки.', specs: [{ name: "Г/п", value: "32 т" }, { name: "Объем", value: "20 м³" }, { name: "Колеса", value: "8x4" }, { name: "Кабина", value: "M" }] },
             { id: 43, category: 'truck', title: 'Tatra Phoenix', price: '17 000 ₽', image: 'images/Tatra Phoenix.webp', desc: 'Вездеходный самосвал с хребтовой рамой. Уникальная проходимость.', specs: [{ name: "Колеса", value: "6x6" }, { name: "Г/п", value: "28 т" }, { name: "Объем", value: "18 м³" }, { name: "Подвеска", value: "Независимая" }] },
-            { id: 44, category: 'truck', title: 'FAW J6 (30т)', price: '13 500 ₽', image: 'images/FAW J6 (30т).webp', desc: 'Китайский самосвал. Хорошее соотношение цены и объема.', specs: [{ name: "Г/п", value: "30 т" }, { name: "Объем", value: "22 м³" }, { name: "Колеса", value: "8x4" }, { name: "Двигатель", value: "CA6DM2" }] },
-            { id: 45, category: 'truck', title: 'Трал Hartung (40т)', price: '22 000 ₽', image: 'images/Трал1.webp', desc: 'Низкорамный полуприцеп-трал для перевозки негабаритной техники и тяжёлых грузов. Заезд с рампой.', specs: [{ name: "Г/п", value: "40 т" }, { name: "Длина площ.", value: "12 м" }, { name: "Тип", value: "Низкорамный" }, { name: "Рампа", value: "Откидная" }] },
             { id: 46, category: 'truck', title: 'Тонар Полуприцеп', price: '18 000 ₽', image: 'images/Тонар 32.webp', desc: 'Для перевозки песка/щебня в огромных объемах.', specs: [{ name: "Объем", value: "32 м3" }, { name: "Г/п", value: "45 т" }, { name: "Оси", value: "4" }, { name: "Тягач", value: "6x4" }] },
-            { id: 47, category: 'truck', title: 'Howo A7', price: '14 000 ₽', image: 'images/Howo A7.jpg', desc: 'Популярный китаец. Комфортная кабина и мощный мотор.', specs: [{ name: "Г/п", value: "30 т" }, { name: "Объем", value: "23 м³" }, { name: "Колеса", value: "8x4" }, { name: "Двигатель", value: "380 л.с." }] },
             { id: 48, category: 'truck', title: 'Mercedes Actros', price: '20 000 ₽', image: 'images/Mercedes Actros.webp', desc: 'Комфорт и мощь. Премиальный самосвал.', specs: [{ name: "Г/п", value: "35 т" }, { name: "Объем", value: "20 м³" }, { name: "Колеса", value: "8x4" }, { name: "КПП", value: "PowerShift" }] },
+            { id: 45, category: 'truck', title: 'Трал Hartung (40т)', price: '22 000 ₽', image: 'images/Трал1.webp', desc: 'Низкорамный полуприцеп-трал для перевозки негабаритной техники и тяжёлых грузов. Заезд с рампой.', specs: [{ name: "Г/п", value: "40 т" }, { name: "Длина площ.", value: "12 м" }, { name: "Тип", value: "Низкорамный" }, { name: "Рампа", value: "Откидная" }] },
 
-            // 5. МАНИПУЛЯТОРЫ (12)
-            { id: 49, category: 'manipulator', title: 'Kanglim 7т (КАМАЗ)', price: '26 000 ₽', image: 'images/Kanglim 7т.jpg', desc: 'КМУ на базе КАМАЗ. Перевозка бытовок, ЖБИ, кирпича.', specs: [{ name: "Стрела", value: "7 т" }, { name: "Борт", value: "10 т" }, { name: "Вылет", value: "19 м" }, { name: "Длина борта", value: "6.5 м" }] },
+            // 5. МАНИПУЛЯТОРЫ
             { id: 50, category: 'manipulator', title: 'Isuzu 3т Малый', price: '18 000 ₽', image: 'images/Isuzu 3т.jpg', desc: 'Маневренный японец. Для работы в центре и узких дворах.', specs: [{ name: "Стрела", value: "3 т" }, { name: "Борт", value: "5 т" }, { name: "Вылет", value: "8 м" }, { name: "Длина борта", value: "5.2 м" }] },
-            { id: 51, category: 'manipulator', title: 'КАМАЗ Вездеход КМУ', price: '29 000 ₽', image: 'images/КАМАЗ Вездеход КМУ.jpg', desc: 'Проедет везде. Доставка грузов на удаленные объекты.', specs: [{ name: "Привод", value: "6x6" }, { name: "Стрела", value: "7 т" }, { name: "Борт", value: "10 т" }, { name: "Шасси", value: "КАМАЗ 43118" }] },
-
             { id: 58, category: 'manipulator', title: 'Daehan 7т', price: '24 000 ₽', image: 'images/Daehan 7т.jpg', desc: 'Корейский КМУ. Аналог Kanglim, высокая надежность.', specs: [{ name: "Стрела", value: "7 т" }, { name: "Вылет", value: "19 м" }, { name: "Борт", value: "10 т" }, { name: "Аутригеры", value: "Широкие" }] },
-            { id: 59, category: 'manipulator', title: 'Hiab 12т', price: '34 000 ₽', image: 'images/Hiab 12т.jpg', desc: 'Профессиональный КМУ для сложных задач.', specs: [{ name: "Стрела", value: "12 т" }, { name: "Борт", value: "15 т" }, { name: "Вылет", value: "16 м" }, { name: "Управление", value: "ДУ" }] },
             { id: 60, category: 'manipulator', title: 'Низкорамный КМУ', price: '25 000 ₽', image: 'images/Низкорамный КМУ.jpg', desc: 'Для высоких грузов и бытовок нестандартной высоты.', specs: [{ name: "Борт", value: "Низкий (0.9м)" }, { name: "Стрела", value: "7 т" }, { name: "Длина", value: "7.5 м" }, { name: "Аппарели", value: "Есть" }] },
+            { id: 49, category: 'manipulator', title: 'Kanglim 7т (КАМАЗ)', price: '26 000 ₽', image: 'images/Kanglim 7т.jpg', desc: 'КМУ на базе КАМАЗ. Перевозка бытовок, ЖБИ, кирпича.', specs: [{ name: "Стрела", value: "7 т" }, { name: "Борт", value: "10 т" }, { name: "Вылет", value: "19 м" }, { name: "Длина борта", value: "6.5 м" }] },
+            { id: 51, category: 'manipulator', title: 'КАМАЗ Вездеход КМУ', price: '29 000 ₽', image: 'images/КАМАЗ Вездеход КМУ.jpg', desc: 'Проедет везде. Доставка грузов на удаленные объекты.', specs: [{ name: "Привод", value: "6x6" }, { name: "Стрела", value: "7 т" }, { name: "Борт", value: "10 т" }, { name: "Шасси", value: "КАМАЗ 43118" }] },
+            { id: 59, category: 'manipulator', title: 'Hiab 12т', price: '34 000 ₽', image: 'images/Hiab 12т.jpg', desc: 'Профессиональный КМУ для сложных задач.', specs: [{ name: "Стрела", value: "12 т" }, { name: "Борт", value: "15 т" }, { name: "Вылет", value: "16 м" }, { name: "Управление", value: "ДУ" }] },
 
             // ДОП. ОБОРУДОВАНИЕ В МАНИПУЛЯТОРЫ
             { id: 'att_man_1', category: 'manipulator', title: 'Монтажная люлька', price: '1 000 ₽', image: 'images/Автовышка 22м.jpg', desc: 'Для высотных работ на КМУ.', specs: [{ name: "Г/п", value: "200 кг" }] },
 
             // 6. ДОРОЖНАЯ (12)
-            { id: 61, category: 'road', title: 'Vogele Super 1800', price: '50 000 ₽', image: 'images/Vogele Super 1800.jpg', desc: 'Асфальтоукладчик. Идеальная ровность покрытия.', specs: [{ name: "Ширина", value: "5 м" }, { name: "Толщина", value: "до 30 см" }, { name: "Бункер", value: "13 т" }] },
-            { id: 62, category: 'road', title: 'Bomag 13т Каток', price: '24 000 ₽', image: 'images/Bomag 13т Каток.webp', desc: 'Грунтовый каток. Вибрационное уплотнение.', specs: [{ name: "Вес", value: "13 т" }, { name: "Привод", value: "Полный" }, { name: "Валец", value: "Гладкий/Кулачк." }] },
-            { id: 63, category: 'road', title: 'Wirtgen W2000 Фреза', price: '70 000 ₽', image: 'images/Wirtgen W2000 Фреза.webp', desc: 'Дорожная фреза. Снятие асфальта на большую глубину.', specs: [{ name: "Ширина", value: "2 м" }, { name: "Глубина", value: "330 мм" }, { name: "Конвейер", value: "Есть" }] },
-            { id: 64, category: 'road', title: 'Грейдер ДЗ-98', price: '32 000 ₽', image: 'images/Грейдер ДЗ-98.webp', desc: 'Мощный грейдер. Планировка территорий, строительство дорог.', specs: [{ name: "Привод", value: "6x6" }, { name: "Вес", value: "19.5 т" }, { name: "Отвал", value: "4.2 м" }] },
-            { id: 65, category: 'road', title: 'Hamm HD90 Каток', price: '22 000 ₽', image: 'images/Hamm HD90 Каток.jpg', desc: 'Асфальтовый каток. Тандемный (два вальца).', specs: [{ name: "Тип", value: "Тандемный" }, { name: "Вес", value: "9 т" }, { name: "Ширина", value: "1.7 м" }] },
-            { id: 66, category: 'road', title: 'Ресайклер Wirtgen', price: '100 000 ₽', image: 'images/Ресайклер Wirtgen.webp', desc: 'Стабилизация грунта. Холодный ресайклинг.', specs: [{ name: "Мощность", value: "600 л.с." }, { name: "Глубина", value: "500 мм" }, { name: "Ширина", value: "2.4 м" }] },
             { id: 67, category: 'road', title: 'Тротуарный каток', price: '16 000 ₽', image: 'images/Тротуарный каток.jpg', desc: 'Малый каток 1.5т. Для дорожек и дворов.', specs: [{ name: "Вес", value: "1.5 т" }, { name: "Ширина", value: "80 см" }, { name: "Тип", value: "Двухвальцовый" }] },
             { id: 68, category: 'road', title: 'Гудронатор 6м3', price: '20 000 ₽', image: 'images/Гудронатор 6м3.webp', desc: 'Разлив битума. Подготовка перед асфальтированием.', specs: [{ name: "Цистерна", value: "6 м3" }, { name: "Ширина", value: "4 м" }, { name: "Подогрев", value: "Есть" }] },
+            { id: 65, category: 'road', title: 'Hamm HD90 Каток', price: '22 000 ₽', image: 'images/Hamm HD90 Каток.jpg', desc: 'Асфальтовый каток. Тандемный (два вальца).', specs: [{ name: "Тип", value: "Тандемный" }, { name: "Вес", value: "9 т" }, { name: "Ширина", value: "1.7 м" }] },
+            { id: 62, category: 'road', title: 'Bomag 13т Каток', price: '24 000 ₽', image: 'images/Bomag 13т Каток.webp', desc: 'Грунтовый каток. Вибрационное уплотнение.', specs: [{ name: "Вес", value: "13 т" }, { name: "Привод", value: "Полный" }, { name: "Валец", value: "Гладкий/Кулачк." }] },
+            { id: 71, category: 'road', title: 'Заливщик швов', price: '24 000 ₽', image: 'images/Заливщик швов.jpg', desc: 'Ремонт трещин. Санация покрытий.', specs: [{ name: "Материал", value: "Мастика" }, { name: "Объем", value: "500 л" }] },
             { id: 69, category: 'road', title: 'Пневмоколесный Ammann', price: '28 000 ₽', image: 'images/Пневмоколесный Ammann.webp', desc: 'Уплотнение асфальта ("утюг"). Финишный слой.', specs: [{ name: "Вес", value: "24 т" }, { name: "Колеса", value: "8 шт" }, { name: "Давление", value: "Рег." }] },
             { id: 70, category: 'road', title: 'Разметчик дорог', price: '30 000 ₽', image: 'images/Разметчик дорог.jpg', desc: 'Нанесение линий. Термопластик или краска.', specs: [{ name: "Тип", value: "Спецмашина" }, { name: "Скорость", value: "до 15 км/ч" }] },
-            { id: 71, category: 'road', title: 'Заливщик швов', price: '24 000 ₽', image: 'images/Заливщик швов.jpg', desc: 'Ремонт трещин. Санация покрытий.', specs: [{ name: "Материал", value: "Мастика" }, { name: "Объем", value: "500 л" }] },
+            { id: 64, category: 'road', title: 'Грейдер ДЗ-98', price: '32 000 ₽', image: 'images/Грейдер ДЗ-98.webp', desc: 'Мощный грейдер. Планировка территорий, строительство дорог.', specs: [{ name: "Привод", value: "6x6" }, { name: "Вес", value: "19.5 т" }, { name: "Отвал", value: "4.2 м" }] },
             { id: 72, category: 'road', title: 'Щебнеразбрасыватель', price: '36 000 ₽', image: 'images/Щебнеразбрасыватель.jpg', desc: 'Равномерный слой. Поверхностная обработка.', specs: [{ name: "Тип", value: "Навесной" }, { name: "Ширина", value: "3.5 м" }] },
+            { id: 61, category: 'road', title: 'Vogele Super 1800', price: '50 000 ₽', image: 'images/Vogele Super 1800.jpg', desc: 'Асфальтоукладчик. Идеальная ровность покрытия.', specs: [{ name: "Ширина", value: "5 м" }, { name: "Толщина", value: "до 30 см" }, { name: "Бункер", value: "13 т" }] },
+            { id: 63, category: 'road', title: 'Wirtgen W2000 Фреза', price: '70 000 ₽', image: 'images/Wirtgen W2000 Фреза.webp', desc: 'Дорожная фреза. Снятие асфальта на большую глубину.', specs: [{ name: "Ширина", value: "2 м" }, { name: "Глубина", value: "330 мм" }, { name: "Конвейер", value: "Есть" }] },
+            { id: 66, category: 'road', title: 'Ресайклер Wirtgen', price: '100 000 ₽', image: 'images/Ресайклер Wirtgen.webp', desc: 'Стабилизация грунта. Холодный ресайклинг.', specs: [{ name: "Мощность", value: "600 л.с." }, { name: "Глубина", value: "500 мм" }, { name: "Ширина", value: "2.4 м" }] },
 
             // 7. НАВЕСНОЕ (12)
-            { id: 73, category: 'attachment', title: 'Гидромолот Delta F10', price: '3 000 ₽', image: 'images/Гидромолот Delta F10.webp', desc: 'Мощный гидравлический молот для разрушения скальных пород, бетона и железобетона. Незаменим при демонтаже зданий и вскрышных работах.', specs: [{ name: "Сила удара", value: "2440 Дж" }, { name: "Вес", value: "850 кг" }, { name: "Частота", value: "450-900 уд/мин" }] },
-            { id: 74, category: 'attachment', title: 'Ямобур Delta RD7', price: '2 500 ₽', image: 'images/Ямобур Delta RD7.webp', desc: 'Навесной гидровращатель для бурения скважин под сваи, столбы освещения и заборы. Работает в грунтах I-IV категорий.', specs: [{ name: "Глубина", value: "до 8 м" }, { name: "Диаметр шнека", value: "150-800 мм" }, { name: "Крутящий момент", value: "7000 Нм" }] },
-            { id: 75, category: 'attachment', title: 'Вибропогружатель', price: '6 000 ₽', image: 'images/Вибропогружатель.jpg', desc: 'Используется для погружения и извлечения шпунта Ларсена, труб и свай в песчаные и глинистые грунты методом вибрирования.', specs: [{ name: "Центробежная сила", value: "300 кН" }, { name: "Вес", value: "900 кг" }, { name: "Тип", value: "Навесной гидравлический" }] },
             { id: 76, category: 'attachment', title: 'Планировочный ковш', price: '1 000 ₽', image: 'images/Планировочный ковш.webp', desc: 'Широкий ковш без зубьев для планировки откосов, выравнивания площадок и погрузки легких сыпучих материалов.', specs: [{ name: "Ширина", value: "1500 мм" }, { name: "Объем", value: "0.6-0.8 м³" }, { name: "Поворотный механизм", value: "Опция" }] },
             { id: 77, category: 'attachment', title: 'Узкий траншейный ковш', price: '1 000 ₽', image: 'images/Узкий ковш (40см).jpg', desc: 'Специальный узкий ковш для рытья траншей под кабели, водопровод и газопровод с минимальной выемкой грунта.', specs: [{ name: "Ширина", value: "300-400 мм" }, { name: "Объем", value: "0.15-0.25 м³" }, { name: "Зубья", value: "3 шт" }] },
-            { id: 78, category: 'attachment', title: 'Клык-рыхлитель', price: '1 500 ₽', image: 'images/Клык-рыхлитель.jpg', desc: 'Мощный однозубый рыхлитель для вскрытия мерзлого грунта, асфальта и разработки каменистых почв перед копкой.', specs: [{ name: "Вес", value: "450 кг" }, { name: "Материал", value: "Износостойкая сталь Hardox" }, { name: "Глубина рыхления", value: "до 1 м" }] },
-            { id: 79, category: 'attachment', title: 'Бетонолом (Крашер)', price: '5 000 ₽', image: 'images/Бетонолом (Крашер).jpg', desc: 'Механические ножницы для первичного и вторичного разрушения железобетонных конструкций и отделения арматуры.', specs: [{ name: "Усилие дробления", value: "60 т" }, { name: "Раскрытие челюстей", value: "800 мм" }, { name: "Вращение", value: "360°" }] },
-            { id: 80, category: 'attachment', title: 'Грейфер для бревен', price: '4 000 ₽', image: 'images/Грейфер для бревен.jpg', desc: 'Гидравлический захват для погрузки бревен, труб, камней и строительного мусора. Обеспечивает точное позиционирование.', specs: [{ name: "Тип", value: "Клещевой" }, { name: "Грузоподъемность", value: "3 т" }, { name: "Ротатор", value: "Есть" }] },
-            { id: 81, category: 'attachment', title: 'Мульчер (Кусторез)', price: '7 000 ₽', image: 'images/Мульчер (Кусторез).jpg', desc: 'Оборудование для расчистки территории от древесно-кустарниковой растительности, пней и порубочных остатков.', specs: [{ name: "Диаметр измельчения", value: "до 20 см" }, { name: "Ширина захвата", value: "1200 мм" }, { name: "Тип ножей", value: "Фиксированные" }] },
-            { id: 82, category: 'attachment', title: 'Трамбовка гидравлик', price: '3 500 ₽', image: 'images/Трамбовка гидравлическая.jpg', desc: 'Виброплита для уплотнения грунта, песка и щебня в траншеях, на откосах и в труднодоступных местах.', specs: [{ name: "Усилие уплотнения", value: "4 т" }, { name: "Площадь плиты", value: "0.4 м²" }, { name: "Частота", value: "2000 уд/мин" }] },
             { id: 83, category: 'attachment', title: 'Вилы погрузочные', price: '1 000 ₽', image: 'images/Вилы погрузочные.jpg', desc: 'Навесное оборудование для экскаваторов-погрузчиков, позволяющее работать с паллетированными грузами.', specs: [{ name: "Грузоподъемность", value: "2.5-3 т" }, { name: "Длина вил", value: "1200 мм" }, { name: "Регулировка ширины", value: "Ручная" }] },
+            { id: 78, category: 'attachment', title: 'Клык-рыхлитель', price: '1 500 ₽', image: 'images/Клык-рыхлитель.jpg', desc: 'Мощный однозубый рыхлитель для вскрытия мерзлого грунта, асфальта и разработки каменистых почв перед копкой.', specs: [{ name: "Вес", value: "450 кг" }, { name: "Материал", value: "Износостойкая сталь Hardox" }, { name: "Глубина рыхления", value: "до 1 м" }] },
             { id: 84, category: 'attachment', title: 'Снегоуборочный отвал', price: '2 000 ₽', image: 'images/Снегоуборочный отвал.jpg', desc: 'Поворотный отвал для уборки снега с дорог и площадок. Оснащен резиновой кромкой для защиты покрытия.', specs: [{ name: "Ширина очистки", value: "2.5 м" }, { name: "Угол поворота", value: "±30°" }, { name: "Управление", value: "Гидравлическое" }] },
+            { id: 74, category: 'attachment', title: 'Ямобур Delta RD7', price: '2 500 ₽', image: 'images/Ямобур Delta RD7.webp', desc: 'Навесной гидровращатель для бурения скважин под сваи, столбы освещения и заборы. Работает в грунтах I-IV категорий.', specs: [{ name: "Глубина", value: "до 8 м" }, { name: "Диаметр шнека", value: "150-800 мм" }, { name: "Крутящий момент", value: "7000 Нм" }] },
+            { id: 73, category: 'attachment', title: 'Гидромолот Delta F10', price: '3 000 ₽', image: 'images/Гидромолот Delta F10.webp', desc: 'Мощный гидравлический молот для разрушения скальных пород, бетона и железобетона. Незаменим при демонтаже зданий и вскрышных работах.', specs: [{ name: "Сила удара", value: "2440 Дж" }, { name: "Вес", value: "850 кг" }, { name: "Частота", value: "450-900 уд/мин" }] },
+            { id: 82, category: 'attachment', title: 'Трамбовка гидравлик', price: '3 500 ₽', image: 'images/Трамбовка гидравлическая.jpg', desc: 'Виброплита для уплотнения грунта, песка и щебня в траншеях, на откосах и в труднодоступных местах.', specs: [{ name: "Усилие уплотнения", value: "4 т" }, { name: "Площадь плиты", value: "0.4 м²" }, { name: "Частота", value: "2000 уд/мин" }] },
+            { id: 80, category: 'attachment', title: 'Грейфер для бревен', price: '4 000 ₽', image: 'images/Грейфер для бревен.jpg', desc: 'Гидравлический захват для погрузки бревен, труб, камней и строительного мусора. Обеспечивает точное позиционирование.', specs: [{ name: "Тип", value: "Клещевой" }, { name: "Грузоподъемность", value: "3 т" }, { name: "Ротатор", value: "Есть" }] },
+            { id: 79, category: 'attachment', title: 'Бетонолом (Крашер)', price: '5 000 ₽', image: 'images/Бетонолом (Крашер).jpg', desc: 'Механические ножницы для первичного и вторичного разрушения железобетонных конструкций и отделения арматуры.', specs: [{ name: "Усилие дробления", value: "60 т" }, { name: "Раскрытие челюстей", value: "800 мм" }, { name: "Вращение", value: "360°" }] },
+            { id: 75, category: 'attachment', title: 'Вибропогружатель', price: '6 000 ₽', image: 'images/Вибропогружатель.jpg', desc: 'Используется для погружения и извлечения шпунта Ларсена, труб и свай в песчаные и глинистые грунты методом вибрирования.', specs: [{ name: "Центробежная сила", value: "300 кН" }, { name: "Вес", value: "900 кг" }, { name: "Тип", value: "Навесной гидравлический" }] },
+            { id: 81, category: 'attachment', title: 'Мульчер (Кусторез)', price: '7 000 ₽', image: 'images/Мульчер (Кусторез).jpg', desc: 'Оборудование для расчистки территории от древесно-кустарниковой растительности, пней и порубочных остатков.', specs: [{ name: "Диаметр измельчения", value: "до 20 см" }, { name: "Ширина захвата", value: "1200 мм" }, { name: "Тип ножей", value: "Фиксированные" }] },
 
             // 8. КОММУНАЛЬНАЯ (12)
-            { id: 85, category: 'communal', title: 'Поливомоечная КДМ', price: '18 000 ₽', image: 'images/Поливомоечная КДМ.jpg', desc: 'Универсальная машина для круглогодичного содержания дорог. Летом - мойка и полив, зимой - очистка от снега и посыпка.', specs: [{ name: "Объем цистерны", value: "8 м³" }, { name: "Ширина мойки", value: "2.5-8 м" }, { name: "Навесное", value: "Щетка/Плуг/Пескач" }] },
-            { id: 86, category: 'communal', title: 'Вакуумная ПУМ Bucher', price: '30 000 ₽', image: 'images/Вакуумная ПУМ Bucher.webp', desc: 'Компактная подметально-уборочная машина для городских улиц и парков. Эффективно собирает пыль и мусор.', specs: [{ name: "Объем бункера", value: "5 м³" }, { name: "Ширина уборки", value: "до 2.3 м" }, { name: "Система", value: "Вакуумная" }] },
-            { id: 87, category: 'communal', title: 'Илосос КАМАЗ (7м3)', price: '24 000 ₽', image: 'images/Илосос КАМАЗ.jpg', desc: 'Машина для вакуумной очистки колодцев, ливневой канализации и отстойников от ила и нефтешлама.', specs: [{ name: "Объем цистерны", value: "7 м³" }, { name: "Глубина очистки", value: "6-8 м" }, { name: "Производительность", value: "1460 м³/ч" }] },
-            { id: 88, category: 'communal', title: 'Мусоровоз (18м3)', price: '22 000 ₽', image: 'images/Мусоровоз.webp', desc: 'Мусоровоз с задней загрузкой для сбора и вывоза твердых бытовых отходов (ТБО). Высокий коэффициент уплотнения.', specs: [{ name: "Объем кузова", value: "18 м³" }, { name: "Тип загрузки", value: "Универсальный" }, { name: "Коэф. прессования", value: "до 6:1" }] },
-            { id: 89, category: 'communal', title: 'Каналопромывочная', price: '28 000 ₽', image: 'images/Каналопромывочная.webp', desc: 'Гидродинамическая машина для аварийной и профилактической прочистки канализационных труб водой под высоким давлением.', specs: [{ name: "Давление воды", value: "160 бар" }, { name: "Запас воды", value: "10 м³" }, { name: "Длина шланга", value: "100 м" }] },
-            { id: 90, category: 'communal', title: 'Трактор МТЗ с щеткой', price: '16 000 ₽', image: 'images/Трактор МТЗ с щеткой.jpg', desc: 'Универсальный трактор для уборки дворовых территорий. Оснащен коммунальной щеткой и отвалом.', specs: [{ name: "База", value: "МТЗ 82.1" }, { name: "Ширина щетки", value: "1.8 м" }, { name: "Привод", value: "Полный 4х4" }] },
-            { id: 91, category: 'communal', title: 'Снегопогрузчик Лаповый', price: '26 000 ₽', image: 'images/Снегопогрузчик.jpg', desc: 'Специальная машина ("Золотые ручки") для быстрой погрузки снега и сколотого льда в самосвалы.', specs: [{ name: "Тип", value: "Лаповый" }, { name: "Производительность", value: "300 м³/ч" }, { name: "Высота погрузки", value: "3.8 м" }] },
             { id: 92, category: 'communal', title: 'Ассенизатор ГАЗ', price: '14 000 ₽', image: 'images/Ассенизатор ГАЗ.jpg', desc: 'Вакуумная машина для откачки септиков и выгребных ям. Компактные размеры для работы в частном секторе.', specs: [{ name: "Объем цистерны", value: "4 м³" }, { name: "Длина шланга", value: "15 м" }, { name: "Время наполнения", value: "5-7 мин" }] },
+            { id: 90, category: 'communal', title: 'Трактор МТЗ с щеткой', price: '16 000 ₽', image: 'images/Трактор МТЗ с щеткой.jpg', desc: 'Универсальный трактор для уборки дворовых территорий. Оснащен коммунальной щеткой и отвалом.', specs: [{ name: "База", value: "МТЗ 82.1" }, { name: "Ширина щетки", value: "1.8 м" }, { name: "Привод", value: "Полный 4х4" }] },
+            { id: 85, category: 'communal', title: 'Поливомоечная КДМ', price: '18 000 ₽', image: 'images/Поливомоечная КДМ.jpg', desc: 'Универсальная машина для круглогодичного содержания дорог. Летом - мойка и полив, зимой - очистка от снега и посыпка.', specs: [{ name: "Объем цистерны", value: "8 м³" }, { name: "Ширина мойки", value: "2.5-8 м" }, { name: "Навесное", value: "Щетка/Плуг/Пескач" }] },
             { id: 93, category: 'communal', title: 'Бункеровоз Рогатка', price: '18 000 ₽', image: 'images/Бункеровоз портальный.webp', desc: 'Портальный погрузчик для вывоза строительного мусора в сменных контейнерах ("лодочках").', specs: [{ name: "Грузоподъемность", value: "5 т" }, { name: "Объем бункера", value: "8 м³" }, { name: "Тип", value: "Скип-лоадер" }] },
             { id: 94, category: 'communal', title: 'Пескоразбрасыватель', price: '20 000 ₽', image: 'images/Пескоразбрасыватель.webp', desc: 'Оборудование для посыпки дорог противогололедными реагентами или пескосоляной смесью.', specs: [{ name: "Объем бункера", value: "6 м³" }, { name: "Ширина посыпки", value: "2-10 м" }, { name: "Плотность", value: "Регулируемая" }] },
             { id: 95, category: 'communal', title: 'Автовышка 22м', price: '20 000 ₽', image: 'images/Автовышка 22м.jpg', desc: 'Автогидроподъемник (АГП) для монтажных работ на высоте, обрезки деревьев и обслуживания фасадов.', specs: [{ name: "Высота подъема", value: "22 м" }, { name: "Г/п люльки", value: "200 кг" }, { name: "Вылет стрелы", value: "10 м" }] },
+            { id: 88, category: 'communal', title: 'Мусоровоз (18м3)', price: '22 000 ₽', image: 'images/Мусоровоз.webp', desc: 'Мусоровоз с задней загрузкой для сбора и вывоза твердых бытовых отходов (ТБО). Высокий коэффициент уплотнения.', specs: [{ name: "Объем кузова", value: "18 м³" }, { name: "Тип загрузки", value: "Универсальный" }, { name: "Коэф. прессования", value: "до 6:1" }] },
+            { id: 87, category: 'communal', title: 'Илосос КАМАЗ (7м3)', price: '24 000 ₽', image: 'images/Илосос КАМАЗ.jpg', desc: 'Машина для вакуумной очистки колодцев, ливневой канализации и отстойников от ила и нефтешлама.', specs: [{ name: "Объем цистерны", value: "7 м³" }, { name: "Глубина очистки", value: "6-8 м" }, { name: "Производительность", value: "1460 м³/ч" }] },
             { id: 96, category: 'communal', title: 'Вывоз снега ПУМ', price: '24 000 ₽', image: 'images/Вывоз снега.jpg', desc: 'Комплексное звено для уборки и вывоза снега. Включает погрузку и транспортировку на снегоплавильный пункт.', specs: [{ name: "Состав", value: "Погрузчик+Самосвал" }, { name: "Объем кузова", value: "20 м³" }, { name: "Вывоз", value: "С талонами" }] },
+            { id: 91, category: 'communal', title: 'Снегопогрузчик Лаповый', price: '26 000 ₽', image: 'images/Снегопогрузчик.jpg', desc: 'Специальная машина ("Золотые ручки") для быстрой погрузки снега и сколотого льда в самосвалы.', specs: [{ name: "Тип", value: "Лаповый" }, { name: "Производительность", value: "300 м³/ч" }, { name: "Высота погрузки", value: "3.8 м" }] },
+            { id: 89, category: 'communal', title: 'Каналопромывочная', price: '28 000 ₽', image: 'images/Каналопромывочная.webp', desc: 'Гидродинамическая машина для аварийной и профилактической прочистки канализационных труб водой под высоким давлением.', specs: [{ name: "Давление воды", value: "160 бар" }, { name: "Запас воды", value: "10 м³" }, { name: "Длина шланга", value: "100 м" }] },
+            { id: 86, category: 'communal', title: 'Вакуумная ПУМ Bucher', price: '30 000 ₽', image: 'images/Вакуумная ПУМ Bucher.webp', desc: 'Компактная подметально-уборочная машина для городских улиц и парков. Эффективно собирает пыль и мусор.', specs: [{ name: "Объем бункера", value: "5 м³" }, { name: "Ширина уборки", value: "до 2.3 м" }, { name: "Система", value: "Вакуумная" }] },
 
-            // 9. ЯМОБУРЫ (2)
-            { id: 97, category: 'yamobur', title: 'Ямобур Isuzu (Колесный)', price: '36 000 ₽', image: 'images/Ямобур колесный.webp', desc: 'Компактный и маневренный ямобур на базе Isuzu. Идеален для работы в городских условиях и на дачных участках.', specs: [{ name: "Глубина бурения", value: "до 3 м" }, { name: "Диаметр", value: "до 500 мм" }, { name: "Шасси", value: "Isuzu Elf" }, { name: "Крюк", value: "3 т" }] },
-            { id: 98, category: 'yamobur', title: 'Ямобур КАМАЗ (Вездеход)', price: '60 000 ₽', image: 'images/Ямобур вездеход.jpg', desc: 'Мощная буровая установка на базе вездехода КАМАЗ. Бурение свай для фундаментов и установки опор ЛЭП в сложных грунтах.', specs: [{ name: "Глубина бурения", value: "до 10 м" }, { name: "Диаметр", value: "до 800 мм" }, { name: "Шасси", value: "КАМАЗ 43118" }, { name: "Привод", value: "6x6" }] },
+            // 9. ЯМОБУРЫ
             { id: 114, category: 'yamobur', title: 'Ямобур Kubota (Мини)', price: '18 000 ₽', image: 'images/kubota.jpg', desc: 'Компактный мини-ямобур на базе Kubota. Высокая проходимость и маневренность.', specs: [{ name: "Глубина бурения", value: "до 2.5 м" }, { name: "Диаметр", value: "до 300 мм" }, { name: "Вес", value: "3 т" }, { name: "База", value: "Гусеничная" }] },
+            { id: 124, category: 'yamobur', title: 'Ямобур JCB (Мини)', price: '18 000 ₽', image: 'images/Ямобур JCB.jpg', desc: 'Компактный ямобур на базе мини-экскаватора JCB. Идеален для бурения скважин на стройплощадках и установки столбов ограждений.', specs: [{ name: "Глубина бурения", value: "до 3 м" }, { name: "Диаметр", value: "до 400 мм" }, { name: "Вес", value: "5 т" }, { name: "База", value: "JCB Мини" }] },
+            { id: 126, category: 'yamobur', title: 'Ямобур LGCE E635F (Мини)', price: '18 000 ₽', image: 'images/Ямобур мин.jpg', desc: 'Мини-ямобур на базе экскаватора LGCE. Компактный, работает в стеснённых условиях — на дачных участках и вблизи построек.', specs: [{ name: "Глубина бурения", value: "до 3 м" }, { name: "Диаметр", value: "до 400 мм" }, { name: "Вес", value: "3.5 т" }, { name: "База", value: "LGCE E635F" }] },
             { id: 115, category: 'yamobur', title: 'Ямобур CAT (20т)', price: '32 000 ₽', image: 'images/cat20.jpg', desc: 'Мощный ямобур на базе экскаватора CAT. Для глубокого бурения и установки свай.', specs: [{ name: "Глубина бурения", value: "до 10 м" }, { name: "Диаметр", value: "до 600 мм" }, { name: "Вес", value: "20 т" }, { name: "База", value: "CAT 320" }] },
+            { id: 97, category: 'yamobur', title: 'Ямобур Isuzu (Колесный)', price: '36 000 ₽', image: 'images/Ямобур колесный.webp', desc: 'Компактный и маневренный ямобур на базе Isuzu. Идеален для работы в городских условиях и на дачных участках.', specs: [{ name: "Глубина бурения", value: "до 3 м" }, { name: "Диаметр", value: "до 500 мм" }, { name: "Шасси", value: "Isuzu Elf" }, { name: "Крюк", value: "3 т" }] },
+            { id: 125, category: 'yamobur', title: 'Ямобур Komatsu PC200', price: '36 000 ₽', image: 'images/Ямобур коматсу.jpg', desc: 'Мощный ямобур на базе экскаватора Komatsu PC200. Бурение свай, установка опор ЛЭП и фундаментных столбов.', specs: [{ name: "Глубина бурения", value: "до 8 м" }, { name: "Диаметр", value: "до 600 мм" }, { name: "Вес", value: "20 т" }, { name: "База", value: "Komatsu PC200" }] },
+            { id: 98, category: 'yamobur', title: 'Ямобур КАМАЗ (Вездеход)', price: '60 000 ₽', image: 'images/Ямобур вездеход.jpg', desc: 'Мощная буровая установка на базе вездехода КАМАЗ. Бурение свай для фундаментов и установки опор ЛЭП в сложных грунтах.', specs: [{ name: "Глубина бурения", value: "до 10 м" }, { name: "Диаметр", value: "до 800 мм" }, { name: "Шасси", value: "КАМАЗ 43118" }, { name: "Привод", value: "6x6" }] },
 
             // 10. МИНИ-ЭКСКАВАТОРЫ (Новые фото)
             { id: 9, category: 'mini_excavator', title: 'Kubota KX019-4', price: '18 000 ₽', image: 'images/kubota_019.jpg', desc: 'Сверхкомпактный мини-экскаватор. Проходит в дверные проемы, идеален для помещений.', specs: [{ name: "Масса", value: "1.9 т" }, { name: "Ковш", value: "0.06 м³" }, { name: "Глубина", value: "2.5 м" }, { name: "Ширина", value: "1.0 м" }] },
@@ -2389,10 +2646,10 @@
             { id: 108, category: 'aerial', title: 'Автовышка Isuzu 45м', price: '32 000 ₽', image: 'images/aerial_45m.jpg', desc: 'Коленчатая автовышка Isuzu рекордной высоты. Для работы над препятствиями и обслуживания небоскребов.', specs: [{ name: "Высота", value: "45 м" }, { name: "Г/п люльки", value: "250 кг" }, { name: "Тип", value: "Коленчатая" }, { name: "Шасси", value: "Isuzu Giga" }] },
 
             // 12. БУЛЬДОЗЕРЫ (5)
+            { id: 112, category: 'bulldozer', title: 'ЧЕТРА Т11', price: '14 000 ₽', image: 'images/ЧЕТРА Т11.webp', desc: 'Российский бульдозер для строительных площадок. Надёжная конструкция, доступные запчасти.', specs: [{ name: "Масса", value: "15 т" }, { name: "Мощность", value: "130 л.с." }, { name: "Отвал", value: "3.2x1.0 м" }, { name: "Объём отвала", value: "3.0 м³" }] },
             { id: 109, category: 'bulldozer', title: 'Shantui SD16', price: '16 000 ₽', image: 'images/Shantui SD16.webp', desc: 'Надёжный бульдозер для планировки площадок, обратной засыпки котлованов и перемещения грунта.', specs: [{ name: "Масса", value: "17 т" }, { name: "Мощность", value: "160 л.с." }, { name: "Отвал", value: "3.7x1.0 м" }, { name: "Объём отвала", value: "3.5 м³" }] },
             { id: 110, category: 'bulldozer', title: 'CAT D6N XL', price: '22 000 ₽', image: 'images/CAT D6N XL.jpg', desc: 'Легендарный бульдозер Caterpillar. Высокая мощность и проходимость для тяжёлых земляных работ.', specs: [{ name: "Масса", value: "20 т" }, { name: "Мощность", value: "185 л.с." }, { name: "Отвал", value: "3.9x1.3 м" }, { name: "Объём отвала", value: "4.5 м³" }] },
             { id: 111, category: 'bulldozer', title: 'Komatsu D65EX-18', price: '25 000 ₽', image: 'images/Komatsu D65EX-18.webp', desc: 'Японский бульдозер повышенной мощности. Для карьерных работ, строительства насыпей и больших площадок.', specs: [{ name: "Масса", value: "21 т" }, { name: "Мощность", value: "217 л.с." }, { name: "Отвал", value: "4.0x1.3 м" }, { name: "Объём отвала", value: "5.6 м³" }] },
-            { id: 112, category: 'bulldozer', title: 'ЧЕТРА Т11', price: '14 000 ₽', image: 'images/ЧЕТРА Т11.webp', desc: 'Российский бульдозер для строительных площадок. Надёжная конструкция, доступные запчасти.', specs: [{ name: "Масса", value: "15 т" }, { name: "Мощность", value: "130 л.с." }, { name: "Отвал", value: "3.2x1.0 м" }, { name: "Объём отвала", value: "3.0 м³" }] },
             { id: 113, category: 'bulldozer', title: 'Liebherr PR 736', price: '28 000 ₽', image: 'images/Liebherr PR 736.jpg', desc: 'Премиальный немецкий бульдозер. Гидростатическая трансмиссия, точное управление, высокая производительность.', specs: [{ name: "Масса", value: "23 т" }, { name: "Мощность", value: "230 л.с." }, { name: "Отвал", value: "4.1x1.4 м" }, { name: "Объём отвала", value: "5.5 м³" }] }
         ];
 
@@ -2760,10 +3017,33 @@
             if (policyOverlay) policyOverlay.classList.remove('open');
         }
 
+        // Success Modal Functions
+        const successOverlay = document.getElementById('successOverlay');
+
+        window.showSuccessModal = function (name, phone) {
+            const msg = document.getElementById('successMessage');
+            msg.innerHTML = `Спасибо, <strong>${name}</strong>! Ваша заявка принята.<br>Менеджер свяжется с вами по номеру <strong>${phone}</strong> в течение 15 минут.`;
+            successOverlay.classList.add('open');
+            // Re-trigger checkmark animation
+            const checkmark = successOverlay.querySelector('.success-checkmark');
+            checkmark.style.animation = 'none';
+            checkmark.offsetHeight; // force reflow
+            checkmark.style.animation = '';
+            const svg = checkmark.querySelector('svg');
+            svg.style.animation = 'none';
+            svg.offsetHeight;
+            svg.style.animation = '';
+        }
+
+        window.closeSuccessModal = function () {
+            successOverlay.classList.remove('open');
+        }
+
         // Close modals on overlay click
         window.addEventListener('click', (e) => {
             if (e.target === modalOverlay) closeModal();
             if (e.target === policyOverlay) closePolicyModal();
+            if (e.target === successOverlay) closeSuccessModal();
         });
 
 
@@ -2801,22 +3081,20 @@
                 });
 
                 if (response.ok) {
-                    alert(`Спасибо, ${name}! Ваша заявка "${modalTitle.innerText}" принята. Мы свяжемся с вами по номеру ${phone}. \n\n(Данные отправлены на почту remstrojlogistic@yandex.ru и в Telegram)`);
                     closeModal();
                     form.reset();
+                    showSuccessModal(name, phone);
                 } else {
-                    // Если PHP вернул ошибку, но это демо-режим, все равно покажем успех
                     console.warn("PHP script returned error or not found");
-                    alert(`Спасибо, ${name}! Ваша заявка принята. Менеджер свяжется с вами по номеру ${phone}.`);
                     closeModal();
                     form.reset();
+                    showSuccessModal(name, phone);
                 }
             } catch (error) {
                 console.error('Error:', error);
-                // Если нет PHP сервера (локальный запуск), выводим имитацию успеха
-                alert(`(Демо-режим)\nСпасибо, ${name}! Ваша заявка принята. Менеджер свяжется с вами.`);
                 closeModal();
                 form.reset();
+                showSuccessModal(name, phone);
             } finally {
                 btn.innerText = originalText;
                 btn.disabled = false;
@@ -2922,6 +3200,39 @@
             });
         }
 
+        // === HELPER: Find machine by equipment name ===
+        function findMachineByName(equipName) {
+            // Extract key words from equipment name for matching
+            // e.g. "Экскаватор Hitachi ZX330" -> match "Hitachi ZX 330-5G"
+            const normalizedName = equipName.toLowerCase().replace(/\s+/g, ' ');
+
+            // Try direct title match first
+            let found = catalogData.find(m => m.title.toLowerCase() === normalizedName);
+            if (found) return found;
+
+            // Try partial match - extract brand+model from equipment name
+            const words = normalizedName.split(' ').filter(w => w.length > 1);
+            // Skip first word if it's a generic type (Экскаватор, Самосвал, etc.)
+            const typeWords = ['экскаватор', 'самосвал', 'автокран', 'погрузчик', 'бульдозер', 'каток', 'грейдер', 'манипулятор', 'автовышка', 'асфальтоукладчик', 'гидромолот', 'телескоп'];
+            const searchWords = words.filter(w => !typeWords.includes(w));
+
+            if (searchWords.length > 0) {
+                // Find machine whose title contains all search words
+                found = catalogData.find(m => {
+                    const title = m.title.toLowerCase();
+                    return searchWords.every(sw => title.includes(sw));
+                });
+                if (found) return found;
+
+                // Fallback: at least the brand name matches
+                found = catalogData.find(m => {
+                    const title = m.title.toLowerCase();
+                    return title.includes(searchWords[0]);
+                });
+            }
+            return found || null;
+        }
+
         // === RENDER PARTNER DETAIL ===
         function renderPartnerDetail(id) {
             const tpl = document.getElementById('tpl-partner-detail');
@@ -2933,11 +3244,27 @@
 
             document.getElementById('partner-detail-title').innerText = partner.name;
 
-            const worksHtml = partner.works.map(w => `<li>${w}</li>`).join('');
-            const equipHtml = partner.equipment.map(e => `<div class="partner-equip-tag">${e}</div>`).join('');
-            const photosHtml = (partner.images || []).map(img =>
-                `<div style="border-radius:8px;overflow:hidden;height:180px;"><img src="${img}" alt="Техника для ${partner.name}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.src='https://placehold.co/400x300/F7B500/000?text=Фото';"></div>`
+            const worksHtml = partner.works.map(w =>
+                `<li><a href="#services" class="partner-work-link">${w}</a></li>`
             ).join('');
+
+            const equipHtml = partner.equipment.map(e => {
+                const machine = findMachineByName(e);
+                if (machine) {
+                    return `<a href="#product?id=${machine.id}" class="partner-equip-tag partner-equip-link">${e}</a>`;
+                }
+                return `<div class="partner-equip-tag">${e}</div>`;
+            }).join('');
+
+            const photosHtml = (partner.images || []).map(img => {
+                // Try to find the machine that uses this image to make photo clickable
+                const machine = catalogData.find(m => m.image === img);
+                const imgTag = `<img src="${img}" alt="Техника для ${partner.name}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.src='https://placehold.co/400x300/F7B500/000?text=Фото';">`;
+                if (machine) {
+                    return `<a href="#product?id=${machine.id}" style="border-radius:8px;overflow:hidden;height:180px;display:block;cursor:pointer;">${imgTag}</a>`;
+                }
+                return `<div style="border-radius:8px;overflow:hidden;height:180px;">${imgTag}</div>`;
+            }).join('');
 
             document.getElementById('partner-detail-content').innerHTML = `
                 <div class="partner-detail-info">
