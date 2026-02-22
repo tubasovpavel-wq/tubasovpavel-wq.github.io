@@ -3006,6 +3006,11 @@
         window.openModal = (t) => {
             modalTitle.innerText = t || 'Заявка';
             modalOverlay.classList.add('open');
+            // Pre-fill phone field
+            const phoneInput = form.querySelector('input[name="phone"]');
+            if (phoneInput && !phoneInput.value) {
+                phoneInput.value = '+7';
+            }
         }
 
         window.closeModal = function () {
