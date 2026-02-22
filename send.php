@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $emailContent .= "Телефон: $phone\n";
     $emailContent .= "Комментарий: $comment\n";
     
-    $headers = "From: no-reply@remstrojlogistic.ru\r\n"; // Лучше использовать домен вашего сайта
+    $headers = "From: no-reply@remstroylogistics.ru\r\n"; // Лучше использовать домен вашего сайта
     $headers .= "Reply-To: $toEmail\r\n";
     $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 

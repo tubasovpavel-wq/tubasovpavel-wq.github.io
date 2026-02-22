@@ -12,15 +12,15 @@
     <meta name="keywords"
         content="аренда спецтехники, услуги спецтехники москва, заказать экскаватор, аренда крана, грузоперевозки, вывоз снега, ремстройлогистик">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://remstrojlogistic.ru/"> <!-- Замените на реальный домен -->
+    <link rel="canonical" href="https://remstroylogistics.ru/">
 
     <!-- OPEN GRAPH (Social Media) -->
     <meta property="og:title" content="Аренда спецтехники в Москве — РЕМСТРОЙЛОГИСТИК">
     <meta property="og:description"
         content="Надежная спецтехника для стройки и дорожных работ. Подача в день заказа. Собственный парк.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://remstrojlogistic.ru/">
-    <meta property="og:image" content="car.jpg">
+    <meta property="og:url" content="https://remstroylogistics.ru/">
+    <meta property="og:image" content="https://remstroylogistics.ru/car.jpg">
     <meta property="og:locale" content="ru_RU">
 
     <!-- MICRODATA SCHEMA.ORG (JSON-LD) -->
@@ -29,7 +29,7 @@
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "РЕМСТРОЙЛОГИСТИК",
-      "url": "https://remstrojlogistic.ru/",
+      "url": "https://remstroylogistics.ru/",
       "logo": "4.png",
       "image": "car.jpg",
       "description": "Аренда строительной и дорожной спецтехники в Москве и Московской области.",
@@ -1281,7 +1281,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
-            align-items: start;
+            align-items: stretch;
         }
 
         .contact-info-box {
@@ -1336,12 +1336,54 @@
 
         .map-wrapper {
             height: 100%;
-            min-height: 400px;
-            border-radius: 12px;
+            min-height: 450px;
+            border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
             border: 1px solid var(--border-color);
+            background: #f5f5f5 url('https://static-maps.yandex.ru/v1?text=Россия,Балашиха,шоссе Энтузиастов 32&z=12&size=600,450&lang=ru_RU&apikey=f9e578fa-d636-4076-921d-93d404d440ac') center/cover no-repeat;
+            position: relative;
+            cursor: pointer;
             transform: translateZ(0);
+        }
+
+        .map-wrapper::before {
+            content: 'Нажмите для активации карты';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+            transition: 0.3s opacity;
+            pointer-events: none;
+        }
+
+        .map-wrapper.loaded::before {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .map-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            border: 0;
+        }
+
+        .map-wrapper.loaded iframe {
+            opacity: 1;
         }
 
         /* === 12. FLOATING BUTTON (FAB) === */
@@ -1663,7 +1705,7 @@
             }
 
             .map-wrapper {
-                min-height: 300px;
+                min-height: 350px;
             }
 
             .footer-cols {
@@ -2391,12 +2433,17 @@
                         Ежедневно с 09:00 до 21:00
                     </div>
                 </div>
-                <div class="map-wrapper">
-                    <!-- Ускоренная карта через поисковый запрос (более надежно) -->
-                    <iframe
-                        src="https://yandex.ru/map-widget/v1/?text=Россия%2C%20Балашиха%2C%20шоссе%20Энтузиастов%2032&z=16"
-                        width="100%" height="100%" frameborder="0" allowfullscreen="true" loading="lazy"
-                        style="display:block;"></iframe>
+                <div id="yandex-map-spa"
+                    style="width:100%;height:100%;min-height:400px;border-radius:12px;overflow:hidden;background:#e8e8e8;position:relative;box-shadow:0 4px 20px rgba(0,0,0,.1);">
+                    <div
+                        style="display:flex;align-items:center;justify-content:center;height:100%;color:#999;font-size:16px;">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style="margin-right:10px;">
+                            <path
+                                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"
+                                fill="#ccc" />
+                        </svg>
+                        Загрузка карты...
+                    </div>
                 </div>
             </div>
         </section>
@@ -2496,6 +2543,39 @@
     </template>
 
     <script>
+        // === YANDEX MAP SPA INIT ===
+        var ymapsApiLoaded = false;
+        function initYandexMapSPA() {
+            var container = document.getElementById('yandex-map-spa');
+            if (!container) return;
+            function createMap() {
+                ymaps.ready(function () {
+                    container.innerHTML = '';
+                    var map = new ymaps.Map('yandex-map-spa', {
+                        center: [55.793035, 37.936780],
+                        zoom: 16,
+                        controls: ['zoomControl', 'geolocationControl', 'fullscreenControl']
+                    }, { suppressMapOpenBlock: true });
+                    var placemark = new ymaps.Placemark([55.793035, 37.936780], {
+                        balloonContentHeader: '<strong>РЕМСТРОЙЛОГИСТИК</strong>',
+                        balloonContentBody: 'г. Балашиха, шоссе Энтузиастов, 32<br>Аренда спецтехники<br><a href="tel:+79265499990">+7 (926) 549-99-90</a>',
+                        balloonContentFooter: 'Ежедневно 09:00–21:00',
+                        hintContent: 'РЕМСТРОЙЛОГИСТИК — аренда спецтехники'
+                    }, { preset: 'islands#redDotIcon', iconColor: '#d32f2f' });
+                    map.geoObjects.add(placemark);
+                    if (/Mobi|Android/i.test(navigator.userAgent)) {
+                        map.behaviors.disable('drag');
+                        map.container.getElement().addEventListener('touchstart', function (e) { if (e.touches.length >= 2) map.behaviors.enable('drag'); });
+                        map.container.getElement().addEventListener('touchend', function () { map.behaviors.disable('drag'); });
+                    }
+                });
+            }
+            if (ymapsApiLoaded) { createMap(); return; }
+            var script = document.createElement('script');
+            script.src = 'https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU';
+            script.onload = function () { ymapsApiLoaded = true; createMap(); };
+            document.head.appendChild(script);
+        }
         // === ЛОКАЛЬНАЯ БАЗА ДАННЫХ (96 МОДЕЛЕЙ) ===
         // Все данные хранятся прямо здесь. Ссылки ведут на файлы в папке images
         const machines = [
@@ -2740,7 +2820,10 @@
                 app.appendChild(document.getElementById('tpl-delivery').content.cloneNode(true));
                 renderCities();
             }
-            else if (cleanHash === '#contacts') app.appendChild(document.getElementById('tpl-contacts').content.cloneNode(true));
+            else if (cleanHash === '#contacts') {
+                app.appendChild(document.getElementById('tpl-contacts').content.cloneNode(true));
+                initYandexMapSPA();
+            }
             else if (cleanHash === '#about') {
                 app.appendChild(document.getElementById('tpl-about').content.cloneNode(true));
             }
@@ -3459,6 +3542,43 @@
         // === INIT ===
         window.addEventListener('hashchange', renderPage);
         window.addEventListener('DOMContentLoaded', renderPage);
+    </script>
+    <script>
+        // ЛЕНИВАЯ ЗАГРУЗКА КАРТЫ (Ускорение сайта)
+        document.addEventListener('DOMContentLoaded', function () {
+            const mapWrappers = document.querySelectorAll('.map-wrapper');
+
+            const activateMap = (wrapper) => {
+                if (wrapper.classList.contains('loaded')) return;
+                const iframe = wrapper.querySelector('iframe');
+                if (iframe && iframe.dataset.src) {
+                    iframe.src = iframe.dataset.src;
+                    wrapper.classList.add('loaded');
+                }
+            };
+
+            // 1. Активация по наведению (для ПК)
+            mapWrappers.forEach(wrapper => {
+                wrapper.addEventListener('mouseenter', () => activateMap(wrapper), { once: true });
+            });
+
+            // 2. Активация при докрутке (Intersection Observer)
+            if ('IntersectionObserver' in window) {
+                const mapObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            activateMap(entry.target);
+                            mapObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { rootMargin: '200px' });
+
+                mapWrappers.forEach(wrapper => mapObserver.observe(wrapper));
+            } else {
+                // Если старый браузер — грузим сразу
+                mapWrappers.forEach(activateMap);
+            }
+        });
     </script>
 </body>
 

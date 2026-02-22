@@ -10,14 +10,14 @@
     <meta name="keywords"
         content="контакты ремстройлогистик, аренда спецтехники балашиха, спецтехника москва адрес, ремстройлогистик телефон">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://remstrojlogistic.ru/kontakty.html">
+    <link rel="canonical" href="https://remstroylogistics.ru/kontakty.html">
     <meta property="og:title" content="Контакты РЕМСТРОЙЛОГИСТИК — аренда спецтехники">
     <meta property="og:description" content="г. Балашиха, шоссе Энтузиастов, 32. Телефон +7 (926) 549-99-90.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://remstrojlogistic.ru/kontakty.html">
+    <meta property="og:url" content="https://remstroylogistics.ru/kontakty.html">
     <meta property="og:locale" content="ru_RU">
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"LocalBusiness","name":"РЕМСТРОЙЛОГИСТИК","url":"https://remstrojlogistic.ru/","telephone":"+7-926-549-99-90","email":"remstrojlogistic@yandex.ru","address":{"@type":"PostalAddress","streetAddress":"шоссе Энтузиастов, 32","addressLocality":"Балашиха","addressRegion":"Московская область","postalCode":"143900","addressCountry":"RU"},"geo":{"@type":"GeoCoordinates","latitude":55.794939,"longitude":37.937744},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"09:00","closes":"21:00"},"priceRange":"$$"}
+    {"@context":"https://schema.org","@type":"LocalBusiness","name":"РЕМСТРОЙЛОГИСТИК","url":"https://remstroylogistics.ru/","telephone":"+7-926-549-99-90","email":"remstrojlogistic@yandex.ru","address":{"@type":"PostalAddress","streetAddress":"шоссе Энтузиастов, 32","addressLocality":"Балашиха","addressRegion":"Московская область","postalCode":"143900","addressCountry":"RU"},"geo":{"@type":"GeoCoordinates","latitude":55.793035,"longitude":37.936780},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"09:00","closes":"21:00"},"priceRange":"$$"}
     </script>
     <link rel="icon" type="image/png" href="4.png">
     <link rel="apple-touch-icon" href="4.png">
@@ -132,12 +132,99 @@
                         </div>
                     </div>
                 </div>
-                <div class="map-wrapper">
-                    <iframe
-                        src="https://yandex.ru/map-widget/v1/?ll=37.937744%2C55.794939&z=17&pt=37.937744%2C55.794939%2Cpm2rdm&lang=ru_RU"
-                        width="100%" height="100%" frameborder="0" allowfullscreen="true" loading="lazy"
-                        style="display:block;border:0;"></iframe>
+                <div id="yandex-map"
+                    style="width:100%;height:100%;min-height:400px;border-radius:12px;overflow:hidden;background:#e8e8e8;position:relative;">
+                    <div id="map-placeholder"
+                        style="display:flex;align-items:center;justify-content:center;height:100%;color:#999;font-size:16px;">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+                            style="margin-right:10px;animation:pulse 1.5s infinite;">
+                            <path
+                                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"
+                                fill="#ccc" />
+                        </svg>
+                        Загрузка карты...
+                    </div>
                 </div>
+                <style>
+                    @keyframes pulse {
+
+                        0%,
+                        100% {
+                            opacity: .4
+                        }
+
+                        50% {
+                            opacity: 1
+                        }
+                    }
+
+                    #yandex-map {
+                        box-shadow: 0 4px 20px rgba(0, 0, 0, .1);
+                    }
+
+                    @media(max-width:768px) {
+                        #yandex-map {
+                            min-height: 300px;
+                            border-radius: 8px;
+                        }
+                    }
+                </style>
+                <script>
+                    (function () {
+                        var mapLoaded = false;
+                        function initMap() {
+                            if (mapLoaded) return;
+                            mapLoaded = true;
+                            var script = document.createElement('script');
+                            script.src = 'https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU';
+                            script.onload = function () {
+                                ymaps.ready(function () {
+                                    var el = document.getElementById('map-placeholder');
+                                    if (el) el.style.display = 'none';
+                                    var map = new ymaps.Map('yandex-map', {
+                                        center: [55.793035, 37.936780],
+                                        zoom: 16,
+                                        controls: ['zoomControl', 'geolocationControl', 'fullscreenControl']
+                                    }, {
+                                        suppressMapOpenBlock: true
+                                    });
+                                    var placemark = new ymaps.Placemark([55.793035, 37.936780], {
+                                        balloonContentHeader: '<strong>РЕМСТРОЙЛОГИСТИК</strong>',
+                                        balloonContentBody: 'г. Балашиха, шоссе Энтузиастов, 32<br>Аренда спецтехники<br><a href="tel:+79265499990">+7 (926) 549-99-90</a>',
+                                        balloonContentFooter: 'Ежедневно 09:00–21:00',
+                                        hintContent: 'РЕМСТРОЙЛОГИСТИК — аренда спецтехники'
+                                    }, {
+                                        preset: 'islands#redDotIcon',
+                                        iconColor: '#d32f2f'
+                                    });
+                                    map.geoObjects.add(placemark);
+                                    map.behaviors.enable('scrollZoom');
+                                    if (/Mobi|Android/i.test(navigator.userAgent)) {
+                                        map.behaviors.disable('drag');
+                                        map.container.getElement().addEventListener('touchstart', function (e) {
+                                            if (e.touches.length >= 2) map.behaviors.enable('drag');
+                                        });
+                                        map.container.getElement().addEventListener('touchend', function () {
+                                            map.behaviors.disable('drag');
+                                        });
+                                    }
+                                });
+                            };
+                            document.head.appendChild(script);
+                        }
+                        if ('IntersectionObserver' in window) {
+                            var observer = new IntersectionObserver(function (entries) {
+                                if (entries[0].isIntersecting) {
+                                    initMap();
+                                    observer.disconnect();
+                                }
+                            }, { rootMargin: '200px' });
+                            observer.observe(document.getElementById('yandex-map'));
+                        } else {
+                            initMap();
+                        }
+                    })();
+                </script>
             </div>
 
             <div class="seo-section" style="margin-top: 40px;">

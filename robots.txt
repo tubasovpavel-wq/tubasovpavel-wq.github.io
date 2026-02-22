@@ -3,6 +3,6 @@ Allow: /
 Disallow: /send.php
 Disallow: /admin.php
 
-Sitemap: https://remstrojlogistic.ru/sitemap.xml
+Sitemap: https://remstroylogistics.ru/sitemap.xml
 
-Host: remstrojlogistic.ru
+Host: remstroylogistics.ru
