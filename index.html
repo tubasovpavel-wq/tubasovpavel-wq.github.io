@@ -2016,9 +2016,9 @@
         <div style="padding: 20px; margin-top: auto;">
             <p style="color: #666; font-size: 14px; margin-bottom: 10px;">Свяжитесь с нами:</p>
             <a href="tel:+79265499990" style="font-weight: 700; color: #333; font-size: 18px;">+7 (926) 549-99-90</a>
-            <a href="mailto:remstrojlogistic@yandex.ru"
-                style="display:block; margin-top:8px; color:#555; font-size:14px; text-decoration:none; border-bottom:1px dashed #ccc; display:inline-block;">📧
-                remstrojlogistic@yandex.ru</a>
+            <div style="margin-top:8px;"><a href="mailto:remstrojlogistic%40yandex.ru"
+                    style="color:#555; font-size:14px; text-decoration:none; border-bottom:1px dashed #ccc;">remstrojlogistic@yandex.ru</a>
+            </div>
 
             <div class="social-icons" style="margin-top: 15px; justify-content: flex-start; display: flex; gap: 10px;">
                 <a href="https://wa.me/79265499990" target="_blank" class="icon-btn sidebar-icon" title="WhatsApp">
@@ -2113,7 +2113,7 @@
                 <h4>Контакты</h4>
                 <ul class="footer-links">
                     <li>г. Балашиха, шоссе Энтузиастов, 32</li>
-                    <li><a href="mailto:remstrojlogistic@yandex.ru"
+                    <li><a href="mailto:remstrojlogistic%40yandex.ru"
                             style="text-decoration: underline;">remstrojlogistic@yandex.ru</a></li>
                     <li>+7 (926) 549-99-90</li>
                 </ul>
@@ -2443,7 +2443,7 @@
                     </div>
                     <div class="c-item">
                         <strong>Email:</strong><br>
-                        <a href="mailto:remstrojlogistic@yandex.ru" class="email-link">remstrojlogistic@yandex.ru</a>
+                        <a href="mailto:remstrojlogistic%40yandex.ru" class="email-link">remstrojlogistic@yandex.ru</a>
                     </div>
                     <div class="c-item">
                         <strong>Режим работы:</strong><br>
@@ -2593,10 +2593,9 @@
             script.onload = function () { ymapsApiLoaded = true; createMap(); };
             document.head.appendChild(script);
         }
-        // === ЛОКАЛЬНАЯ БАЗА ДАННЫХ (96 МОДЕЛЕЙ) ===
-        // Все данные хранятся прямо здесь. Ссылки ведут на файлы в папке images
-        const machines = [
-            // 1. ЭКСКАВАТОРЫ (12)
+        // === БАЗА ДАННЫХ ТЕХНИКИ ===
+        // Данные встроены как запасной вариант. Если есть data/machines.json — загружается из JSON (через админку)
+        let machines = [
             { id: 3, category: 'excavator', title: 'Doosan DX190W Колесный', price: '24 000 ₽', image: 'images/doosan_190.webp', desc: 'Мобильный экскаватор для городских условий. Не портит асфальт, быстро перемещается между объектами.', specs: [{ name: "Масса", value: "18.5 т" }, { name: "Ковш", value: "0.9 м³" }, { name: "Глубина", value: "5.8 м" }, { name: "Скорость", value: "35 км/ч" }] },
             { id: 4, category: 'excavator', title: 'Komatsu PC210LC', price: '24 000 ₽', image: 'images/komatsu_210.jpg', desc: 'Универсальный гусеничный экскаватор. Экономичен, подходит для большинства землеройных работ.', specs: [{ name: "Масса", value: "21 т" }, { name: "Ковш", value: "1.0 м³" }, { name: "Глубина", value: "6.6 м" }, { name: "Габариты", value: "9.5x2.8x3.0 м" }] },
             { id: 11, category: 'excavator', title: 'Sany SY215C', price: '24 000 ₽', image: 'images/sany_215.jpg', desc: 'Современный производительный экскаватор. Экономичный двигатель Isuzu.', specs: [{ name: "Масса", value: "21.5 т" }, { name: "Ковш", value: "1.1 м³" }, { name: "Глубина", value: "6.6 м" }, { name: "Габариты", value: "9.6x2.9x3.0 м" }] },
@@ -2751,7 +2750,7 @@
         ];
 
         // Список услуг с описаниями и категориями
-        const services = [
+        let services = [
             { id: 's1', title: 'Благоустройство территорий', categories: ['loader', 'excavator', 'road', 'truck'], desc: 'Комплексное благоустройство территорий под ключ. Выполняем планировку участка, устройство газонов, укладку тротуарной плитки и асфальтирование.', techDesc: 'Погрузчики JCB/Bobcat для точных земляных работ и перемещения материалов. Экскаваторы для подготовки основания. Дорожные катки и асфальтоукладчики для устройства покрытий. Самосвалы для доставки сыпучих материалов.' },
             { id: 's2', title: 'Выкопать пруд', categories: ['excavator', 'truck'], desc: 'Профессиональная копка прудов и водоёмов любого размера и глубины. Формирование береговой линии, дна и откосов согласно проекту.', techDesc: 'Гусеничные экскаваторы с длинной стрелой для работы на глубине и с берега. Самосвалы повышенной проходимости для вывоза грунта в условиях сложного рельефа.' },
             { id: 's3', title: 'Перевозка грузов', categories: ['manipulator', 'truck'], desc: 'Оперативная перевозка строительных материалов, бытовок, ЖБИ изделий и оборудования по Москве и Московской области.', techDesc: 'Манипуляторы с грузоподъемностью стрелы от 3 до 12 тонн (Kanglim, Palfinger). Позволяют осуществлять погрузку, перевозку и разгрузку без привлечения дополнительного крана.' },
@@ -2773,6 +2772,18 @@
         ];
 
         let catalogData = machines;
+
+        // === ЗАГРУЗКА ДАННЫХ ИЗ JSON (если есть — переопределяет встроенные) ===
+        async function loadSiteData() {
+            try {
+                const [mRes, sRes] = await Promise.all([
+                    fetch('data/machines.json'),
+                    fetch('data/services.json')
+                ]);
+                if (mRes.ok) { machines = await mRes.json(); catalogData = machines; }
+                if (sRes.ok) services = await sRes.json();
+            } catch (e) { /* JSON не найден — используем встроенные данные */ }
+        }
 
         // === ROUTER ===
         function renderPage() {
@@ -3558,7 +3569,10 @@
 
         // === INIT ===
         window.addEventListener('hashchange', renderPage);
-        window.addEventListener('DOMContentLoaded', renderPage);
+        window.addEventListener('DOMContentLoaded', async function () {
+            await loadSiteData();
+            renderPage();
+        });
     </script>
     <script>
         // ЛЕНИВАЯ ЗАГРУЗКА КАРТЫ (Ускорение сайта)
